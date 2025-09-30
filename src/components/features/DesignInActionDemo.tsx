@@ -4,29 +4,29 @@ import { motion } from 'framer-motion';
 const features = [
   {
     id: 1,
-    title: "FinFlow",
-    description: "FinFlow needed an expense tracking platform for startup teams with tight budgets. Existing tools were too complex, so I designed an MVP to provide real-time spending insights for growth and fundraising.",
+    title: "TaskFlow",
+    description: "TaskFlow needed an AI productivity hub for startup teams with tight budgets. Existing tools were too complex, so I designed an MVP to provide real-time AI insights for growth and fundraising.",
     tags: ["SaaS", "UX", "UI", "AI"],
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=491&h=283&fit=crop&crop=center"
   },
   {
     id: 2,
-    title: "LaunchPad",
-    description: "LaunchPad wanted a website builder for founders without coding skills. I designed an intuitive platform for creating MVP landing pages and marketing sites to establish online presence quickly.",
+    title: "IdeaForge",
+    description: "IdeaForge wanted a no-code AI app builder for founders without coding skills. I designed an intuitive platform for creating AI-powered MVP landing pages and marketing sites to establish online presence quickly.",
     tags: ["UI", "UX"],
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=491&h=283&fit=crop&crop=center"
   },
   {
     id: 3,
-    title: "HealthSync",
-    description: "HealthSync aimed to provide startup teams accessible telehealth for overwhelmed employees. Traditional healthcare was slow and inaccessible, so I designed an app connecting teams to virtual care, supporting startup wellness.",
+    title: "WellAI",
+    description: "WellAI aimed to provide startup teams AI-driven wellness for overwhelmed employees. Traditional healthcare was slow and inaccessible, so I designed an app connecting teams to AI-powered virtual care, supporting startup wellness.",
     tags: ["Product Design"],
     image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=491&h=283&fit=crop&crop=center"
   },
   {
     id: 4,
-    title: "TalentBridge",
-    description: "TalentBridge aimed to create a hiring platform for startups scaling from 5 to 50 employees. I designed a solution to simplify recruitment while ensuring quality hires, addressing the unique needs of fast-growing teams.",
+    title: "HireSmart",
+    description: "HireSmart aimed to create an AI talent matching platform for startups scaling from 5 to 50 employees. I designed a solution to simplify AI-powered recruitment while ensuring quality hires, addressing the unique needs of fast-growing teams.",
     tags: ["SaaS", "Visual Design"],
     image: "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=491&h=283&fit=crop&crop=center"
   }
@@ -47,16 +47,22 @@ const DesignInActionDemo = () => {
           >
             <span 
               style={{
-                fontFamily: 'Arial Rounded MT Regular, Arial, sans-serif',
                 fontSize: '56px',
-                fontWeight: 100,
                 color: '#0E1C29',
                 letterSpacing: '-0.56px',
                 lineHeight: '67.2px',
                 WebkitFontSmoothing: 'antialiased'
               }}
             >
-              Design in action
+              <span style={{
+                fontFamily: 'Playfair Display Italic, Georgia, Times New Roman, serif',
+                fontWeight: 400,
+                fontStyle: 'italic'
+              }}>AI</span>
+              <span style={{
+                fontFamily: 'Arial Rounded MT Regular, Arial, sans-serif',
+                fontWeight: 100
+              }}> in action</span>
             </span>
           </motion.h2>
           
@@ -75,15 +81,16 @@ const DesignInActionDemo = () => {
           }}
         >
           {features.map((feature, index) => (
-            <motion.div 
-              key={feature.id}
-              className="bg-white rounded-2xl shadow-lg border border-gray-200 flex flex-col relative group cursor-pointer"
-              style={{
-                width: '504px',
-                height: '589px',
-                padding: '20px',
-                boxShadow: 'rgba(0, 0, 0, 0.08) 0px 0.706592px 0.706592px -0.666667px, rgba(0, 0, 0, 0.08) 0px 1.80656px 1.80656px -1.33333px, rgba(0, 0, 0, 0.07) 0px 3.62176px 3.62176px -2px, rgba(0, 0, 0, 0.07) 0px 6.8656px 6.8656px -2.66667px, rgba(0, 0, 0, 0.05) 0px 13.6468px 13.6468px -3.33333px, rgba(0, 0, 0, 0.02) 0px 30px 30px -4px, rgb(255, 255, 255) 0px 3px 1px 0px inset'
-              }}
+             <motion.div 
+               key={feature.id}
+               className="rounded-2xl shadow-lg border border-gray-200 flex flex-col relative group cursor-pointer"
+               style={{
+                 width: '504px',
+                 height: '589px',
+                 padding: '20px',
+                 backgroundColor: '#EFEAE5',
+                 boxShadow: 'rgba(0, 0, 0, 0.08) 0px 0.706592px 0.706592px -0.666667px, rgba(0, 0, 0, 0.08) 0px 1.80656px 1.80656px -1.33333px, rgba(0, 0, 0, 0.07) 0px 3.62176px 3.62176px -2px, rgba(0, 0, 0, 0.07) 0px 6.8656px 6.8656px -2.66667px, rgba(0, 0, 0, 0.05) 0px 13.6468px 13.6468px -3.33333px, rgba(0, 0, 0, 0.02) 0px 30px 30px -4px, rgb(255, 255, 255) 0px 3px 1px 0px inset'
+               }}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}

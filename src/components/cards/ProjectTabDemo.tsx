@@ -9,34 +9,34 @@ const ProjectTabDemo = () => {
     {
       id: 1,
       number: "01",
-      title: "MedixCare — AI Triage Assistant for Healthcare",
-      description: "We built a custom AI triage assistant that evaluates symptoms and routes patients to the appropriate care level.",
+      title: "CarePath — Virtual Health Guide",
+      description: "We built an AI assistant that listens to symptoms and guides patients toward the right treatment in real time.",
       image: "https://framerusercontent.com/images/BlgeL0EotFTQ0vq42WKucxKVO4.png?width=960&height=1200",
       stats: [
-        { value: "38%", label: "Reduced average wait" },
-        { value: "29%", label: "Rise in patient satisfaction" }
+        { value: "44%", label: "Quicker diagnosis support" },
+        { value: "28%", label: "Increase in patient trust" }
       ]
     },
     {
       id: 2,
       number: "02", 
-      title: "FinTech Pro — Automated Trading Platform",
-      description: "Developed an AI-powered trading platform that analyzes market trends and executes trades with precision.",
+      title: "TradeMind — AI Market Navigator",
+      description: "We created an intelligent platform that interprets financial signals and executes trades with smart automation.",
       image: "https://framerusercontent.com/images/BlgeL0EotFTQ0vq42WKucxKVO4.png?width=960&height=1200",
       stats: [
-        { value: "45%", label: "Increased trading accuracy" },
-        { value: "32%", label: "Reduced manual errors" }
+        { value: "47%", label: "Better forecasting accuracy" },
+        { value: "30%", label: "Drop in trading mistakes" }
       ]
     },
     {
       id: 3,
       number: "03",
-      title: "Workwise — Automated HR Workflow Bot", 
-      description: "Developed an AI-powered workflow automation bot for onboarding, leave requests, and FAQ handling.",
+      title: "TeamFlow — AI HR Assistant", 
+      description: "We designed an automation bot that streamlines onboarding, manages employee requests, and answers HR questions instantly.",
       image: "https://framerusercontent.com/images/BlgeL0EotFTQ0vq42WKucxKVO4.png?width=960&height=1200",
       stats: [
-        { value: "17%", label: "Saved admin time" },
-        { value: "10%", label: "Improved team output" }
+        { value: "20%", label: "Less administrative workload" },
+        { value: "12%", label: "Higher team efficiency" }
       ]
     }
   ];
@@ -57,9 +57,10 @@ const ProjectTabDemo = () => {
               className="inline-block text-center"
               style={{
                 color: '#000000',
-                fontFamily: 'Arial Rounded MT Regular, Arial, sans-serif',
+                fontFamily: 'Playfair Display Italic, Georgia, Times New Roman, serif',
                 fontSize: '56px',
-                fontWeight: 100,
+                fontWeight: 400,
+                fontStyle: 'italic',
                 letterSpacing: '-0.56px',
                 lineHeight: '67.2px',
                 WebkitFontSmoothing: 'antialiased'
@@ -73,10 +74,11 @@ const ProjectTabDemo = () => {
 
         {/* Main Container - 1200x576.1 */}
         <motion.div 
-          className="mx-auto bg-gray-100 rounded-2xl shadow-lg border border-gray-200 flex flex-col"
+          className="mx-auto rounded-2xl shadow-lg border border-gray-200 flex flex-col"
           style={{
             width: '1200px',
             height: '576.1px',
+            backgroundColor: '#EFEAE5',
             boxShadow: 'rgba(0, 0, 0, 0.08) 0px 0.706592px 0.706592px -0.666667px, rgba(0, 0, 0, 0.08) 0px 1.80656px 1.80656px -1.33333px, rgba(0, 0, 0, 0.07) 0px 3.62176px 3.62176px -2px, rgba(0, 0, 0, 0.07) 0px 6.8656px 6.8656px -2.66667px, rgba(0, 0, 0, 0.05) 0px 13.6468px 13.6468px -3.33333px, rgba(0, 0, 0, 0.02) 0px 30px 30px -4px, rgb(255, 255, 255) 0px 3px 1px 0px inset'
           }}
           initial={{ opacity: 0, y: 50 }}
@@ -101,7 +103,7 @@ const ProjectTabDemo = () => {
                 className={`flex items-center justify-center rounded-lg transition-all duration-300 ${
                   activeTab === index 
                     ? 'bg-white shadow-lg' 
-                    : 'bg-gray-100 hover:bg-gray-50'
+                    : 'bg-gray-50 hover:bg-gray-100'
                 }`}
                 style={{
                   width: '376px',
@@ -119,7 +121,7 @@ const ProjectTabDemo = () => {
                     fontWeight: 100
                   }}
                 >
-                  PROJECT {project.id}
+                  CASE {project.id}
                 </span>
               </button>
             ))}

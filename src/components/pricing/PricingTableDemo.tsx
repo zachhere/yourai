@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { Button } from "../ui/pricing-table-button"
-import { cn } from "../../../lib/utils"
+import { cn } from "../../lib/utils"
 import { CheckIcon, ArrowRightIcon } from "@radix-ui/react-icons"
 import NumberFlow from "@number-flow/react"
 
@@ -102,13 +102,13 @@ export function PricingTable({
                 "flex-1 p-4 rounded-xl text-left transition-all",
                 "border border-zinc-200 dark:border-zinc-800",
                 selectedPlan === plan.level &&
-                  "ring-2 ring-orange-300 dark:ring-orange-400",
+                  "ring-2 ring-amber-600 dark:ring-amber-500",
               )}
             >
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-medium" style={{ fontFamily: 'Arial Rounded MT Regular, Arial, sans-serif' }}>{plan.name}</span>
                 {plan.popular && (
-                  <span className="text-xs bg-orange-100 dark:bg-orange-900 text-orange-600 dark:text-orange-300 px-2 py-0.5 rounded-full font-['Inter']">
+                  <span className="text-xs bg-amber-100 dark:bg-amber-900 text-amber-700 dark:text-amber-300 px-2 py-0.5 rounded-full font-['Inter']">
                     Popular
                   </span>
                 )}
@@ -148,7 +148,7 @@ export function PricingTable({
                   className={cn(
                     "flex items-center p-4 transition-colors",
                     feature.included === selectedPlan &&
-                      "bg-orange-50/50 dark:bg-orange-900/20",
+                      "bg-amber-50/50 dark:bg-amber-900/20",
                   )}
                 >
                   <div className="flex-1 text-sm font-['Inter']">{feature.name}</div>
@@ -162,7 +162,7 @@ export function PricingTable({
                         )}
                       >
                         {shouldShowCheck(feature.included, plan.level) ? (
-                          <CheckIcon className="w-5 h-5 text-orange-500" />
+                          <CheckIcon className="w-5 h-5 text-amber-600" />
                         ) : (
                           <span className="text-zinc-300 dark:text-zinc-700 font-['Inter']">
                             -
@@ -197,32 +197,32 @@ function shouldShowCheck(
 }
 
 const features = [
-    { name: "Basic Analytics", included: "starter" },
+    { name: "Core Analytics", included: "starter" },
     { name: "Up to 5 team members", included: "starter" },
     { name: "Basic support", included: "starter" },
-    { name: "Advanced Analytics", included: "pro" },
+    { name: "Smart Analytics", included: "pro" },
     { name: "Up to 20 team members", included: "pro" },
     { name: "Priority support", included: "pro" },
-    { name: "Custom integrations", included: "all" },
+    { name: "Custom AI Integrations", included: "all" },
     { name: "Unlimited team members", included: "all" },
-    { name: "24/7 phone support", included: "all" },
+    { name: "24/7 expert support", included: "all" },
 ];
 
 const plans = [
     {
-        name: "Starter",
-        price: { monthly: 15, yearly: 144 },
+        name: "Basic",
+        price: { monthly: 19, yearly: 182 },
         level: "starter",
     },
     {
-        name: "Pro",
-        price: { monthly: 49, yearly: 470 },
+        name: "Growth",
+        price: { monthly: 59, yearly: 566 },
         level: "pro",
         popular: false,
     },
     {
         name: "Enterprise",
-        price: { monthly: 99, yearly: 990 },
+        price: { monthly: 129, yearly: 1238 },
         level: "all",
     },
 ];
@@ -236,7 +236,7 @@ function PricingTableDemo() {
             defaultInterval="monthly"
             onPlanSelect={(plan: PlanLevel) => console.log("Selected plan:", plan)}
             containerClassName="py-12"
-            buttonClassName="bg-orange-400 hover:bg-orange-500 text-white"
+            buttonClassName="bg-amber-600 hover:bg-amber-700 text-white"
         />
     );
 }

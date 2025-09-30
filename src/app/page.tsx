@@ -3,14 +3,16 @@ import React, { useEffect } from 'react';
 import Lenis from 'lenis';
 import { MoodHeroDemo } from '../components/hero/MoodHeroDemo';
 import { GradientHeading } from '../components/ui/gradient-heading';
-import { LogoCarousel } from '../components/ui/logo-carousel';
+import { Logos3Demo } from '../components/carousel/Logos3Demo';
 import OrbProcessDemo from '../components/process/OrbProcessDemo';
 import ProjectTabDemo from '../components/cards/ProjectTabDemo';
+import ThreeCardDemo from '../components/cards/ThreeCardDemo';
 import TestimonialsDemo from '../components/testimonials/TestimonialsDemo';
 import { PricingTableDemo } from '../components/pricing/PricingTableDemo';
 import { FaqSectionWithCategoriesDemo } from '../components/faq/FAQMiddleDemo';
 import { StackedCircularFooterDemo } from '../components/footer/StackCircularFooterMiddleDemo';
 import DesignInActionDemo from '../components/features/DesignInActionDemo';
+import OrbFeatureDemo from '../components/features/OrbFeatureDemo';
 import { motion } from 'framer-motion';
 
 // 로고 아이콘들
@@ -339,49 +341,13 @@ export default function MixTemplate() {
 
       {/* Logo Carousel Section - SimpleSaaSTemplate에서 가져옴 */}
       <motion.div 
-        className="space-y-8 pt-8 pb-24"
+        className="space-y-8 pt-4 pb-12"
         initial={{ opacity: 0, y: 30, scale: 0.95 }}
         whileInView={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
         viewport={{ once: true }}
       >
         <div className="mx-auto flex w-full max-w-[1910px] flex-col items-center space-y-8">
-          <motion.div 
-            className="text-center"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
-            viewport={{ once: true }}
-          >
-            <motion.div 
-              style={{ fontSize: '16px', fontFamily: 'Inter', color: '#6D6D6D', marginBottom: '8px' }}
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
-              viewport={{ once: true }}
-            >
-              The best are already here
-            </motion.div>
-            <motion.a 
-              href="https://www.newcult.co" 
-              target="_blank" 
-              style={{ textDecoration: 'none' }}
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
-              viewport={{ once: true }}
-              whileHover={{ scale: 1.05 }}
-            >
-              <div style={{ 
-                fontSize: '40px', 
-                fontFamily: 'Arial Rounded MT Regular, Arial, sans-serif', 
-                color: '#121212', 
-                fontWeight: '100' 
-              }}>
-                Join us
-              </div>
-            </motion.a>
-          </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 30, scale: 0.95 }}
@@ -389,9 +355,31 @@ export default function MixTemplate() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.5 }}
             viewport={{ once: true }}
           >
-            <LogoCarousel columnCount={3} logos={allLogos} />
+            <Logos3Demo />
           </motion.div> 
         </div>
+      </motion.div>
+
+      {/* ThreeCardDemo 섹션 - LogoCarousel 밑에 추가 */}
+      <motion.div 
+        className="py-24"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        viewport={{ once: true }}
+      >
+        <ThreeCardDemo />
+      </motion.div>
+
+      {/* OrbFeatureDemo 섹션 - ThreeCardDemo 밑에 추가 */}
+      <motion.div 
+        className="py-24"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        viewport={{ once: true }}
+      >
+        <OrbFeatureDemo />
       </motion.div>
 
       {/* Process 섹션 - OrbaiTemplate에서 가져옴 */}
@@ -456,16 +444,26 @@ export default function MixTemplate() {
           >
             <span 
               style={{
-                fontFamily: 'Arial Rounded MT Regular, Arial, sans-serif',
                 fontSize: '56px',
-                fontWeight: 100,
                 color: '#000000',
                 letterSpacing: '-0.56px',
                 lineHeight: '67.2px',
                 WebkitFontSmoothing: 'antialiased'
               }}
             >
-              Plans
+              <span style={{
+                fontFamily: 'Arial Rounded MT Regular, Arial, sans-serif',
+                fontWeight: 100
+              }}>Simple </span>
+              <span style={{
+                fontFamily: 'Playfair Display Italic, Georgia, Times New Roman, serif',
+                fontWeight: 400,
+                fontStyle: 'italic'
+              }}>pricing </span>
+              <span style={{
+                fontFamily: 'Arial Rounded MT Regular, Arial, sans-serif',
+                fontWeight: 100
+              }}>plans</span>
             </span>
           </motion.h2>
         </div>
@@ -493,15 +491,16 @@ export default function MixTemplate() {
             <h2 className="mb-6">
               <span 
                 style={{
-                  fontFamily: 'Arial Rounded MT Regular, Arial, sans-serif',
                   fontSize: '40px',
-                  fontWeight: '100',
                   color: '#121212',
                   letterSpacing: '-0.4px',
                   lineHeight: '48px',
                 }}
               >
-                FAQs
+                <span style={{
+                  fontFamily: 'Arial Rounded MT Regular, Arial, sans-serif',
+                  fontWeight: '100'
+                }}>FAQ</span>
               </span>
             </h2>
           </motion.div>

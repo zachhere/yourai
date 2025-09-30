@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { cn } from "../../../lib/utils";
+import { cn } from "../../lib/utils";
 import { Button } from "../ui/pricing-table-button";
 import { Badge } from "../ui/faq-middle-badge";
 
@@ -221,23 +221,23 @@ export { FaqSectionWithCategories };
 
 const DEMO_FAQS = [
   {
-    question: "How do I get started?",
-    answer: "Getting started is easy! Simply sign up for an account and follow our quick setup guide. We'll walk you through each step of the process.",
+    question: "How do I begin working with you?",
+    answer: "Starting is simple — schedule an introductory call with our team. We'll discuss your goals, assess your current workflows, and outline a tailored engagement plan.",
     category: "Getting Started",
   },
   {
-    question: "What payment methods do you accept?",
-    answer: "We accept all major credit cards, PayPal, and bank transfers. All payments are processed securely through our payment partners.",
+    question: "What payment options are available?",
+    answer: "We typically work on project-based or retainer agreements. Payments can be made via bank transfer or invoicing, depending on your company's procurement process.",
     category: "Billing",
   },
   {
-    question: "Is there a free trial available?",
-    answer: "Yes! We offer a 14-day free trial with full access to all features. No credit card required to start your trial.",
+    question: "Do you offer a trial or pilot program?",
+    answer: "Yes — we often start with a short pilot engagement to demonstrate measurable value. This allows you to experience our approach before committing to a longer partnership.",
     category: "Pricing",
   },
   {
-    question: "How can I contact support?",
-    answer: "Our support team is available 24/7 through our help center, email support, or live chat. We typically respond within 2 hours.",
+    question: "How can I reach your team?",
+    answer: "You'll have direct access to your dedicated consultant throughout the project. For ongoing partnerships, we provide structured check-ins and priority response via email or Slack.",
     category: "Support",
   },
 ];
