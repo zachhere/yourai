@@ -190,10 +190,10 @@ const ProjectTabDemo = () => {
                     className="text-gray-900 mb-4"
                     style={{
                       fontFamily: 'Arial Rounded MT Regular, Arial, sans-serif',
-                      fontSize: '20px',
+                      fontSize: '24px',
                       fontWeight: 100,
-                      lineHeight: '24px',
-                      letterSpacing: '-0.2px'
+                      lineHeight: '28px',
+                      letterSpacing: '-0.24px'
                     }}
                   >
                     {projects[activeTab].title}
