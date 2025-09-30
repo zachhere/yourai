@@ -11,7 +11,6 @@ import TestimonialsDemo from '../components/testimonials/TestimonialsDemo';
 import { PricingTableDemo } from '../components/pricing/PricingTableDemo';
 import { FaqSectionWithCategoriesDemo } from '../components/faq/FAQMiddleDemo';
 import { StackedCircularFooterDemo } from '../components/footer/StackCircularFooterMiddleDemo';
-import DesignInActionDemo from '../components/features/DesignInActionDemo';
 import OrbFeatureDemo from '../components/features/OrbFeatureDemo';
 import { motion } from 'framer-motion';
 
@@ -350,6 +349,7 @@ export default function MixTemplate() {
         <div className="mx-auto flex w-full max-w-[1910px] flex-col items-center space-y-8">
 
           <motion.div
+            className="w-full flex justify-center"
             initial={{ opacity: 0, y: 30, scale: 0.95 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.5 }}
@@ -360,18 +360,7 @@ export default function MixTemplate() {
         </div>
       </motion.div>
 
-      {/* ThreeCardDemo 섹션 - LogoCarousel 밑에 추가 */}
-      <motion.div 
-        className="py-24"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        viewport={{ once: true }}
-      >
-        <ThreeCardDemo />
-      </motion.div>
-
-      {/* OrbFeatureDemo 섹션 - ThreeCardDemo 밑에 추가 */}
+      {/* OrbFeatureDemo 섹션 - Logos3Demo 바로 밑에 추가 */}
       <motion.div 
         className="py-24"
         initial={{ opacity: 0, y: 20 }}
@@ -380,6 +369,17 @@ export default function MixTemplate() {
         viewport={{ once: true }}
       >
         <OrbFeatureDemo />
+      </motion.div>
+
+      {/* ThreeCardDemo 섹션 - OrbFeatureDemo 밑에 추가 */}
+      <motion.div 
+        className="py-24"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        viewport={{ once: true }}
+      >
+        <ThreeCardDemo />
       </motion.div>
 
       {/* Process 섹션 - OrbaiTemplate에서 가져옴 */}
@@ -393,16 +393,6 @@ export default function MixTemplate() {
         <OrbProcessDemo />
       </motion.div>
 
-      {/* Design in Action Section */}
-      <motion.div 
-        className="py-24"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        viewport={{ once: true }}
-      >
-        <DesignInActionDemo />
-      </motion.div>
       
       {/* Project Tab 섹션 - OrbaiTemplate에서 가져옴 */}
       <motion.div 
