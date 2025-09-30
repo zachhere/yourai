@@ -116,12 +116,13 @@ const ProjectTabDemo = () => {
                 <span 
                   className="font-medium text-gray-900 uppercase tracking-wide"
                   style={{
-                    fontFamily: 'Arial Rounded MT Regular, Arial, sans-serif',
-                    fontSize: '12px',
-                    fontWeight: 100
+                    fontFamily: 'Playfair Display Italic, Georgia, Times New Roman, serif',
+                    fontSize: '14px',
+                    fontWeight: 700,
+                    fontStyle: 'italic'
                   }}
                 >
-                  CASE {project.id}
+                  {project.id === 1 ? 'CASE I' : project.id === 2 ? 'CASE II' : 'CASE III'}
                 </span>
               </button>
             ))}
@@ -177,7 +178,7 @@ const ProjectTabDemo = () => {
                   <div 
                     className="text-gray-400 mb-4"
                     style={{
-                      fontFamily: 'Inter, sans-serif',
+                      fontFamily: 'Arial Rounded MT Regular, Arial, sans-serif',
                       fontSize: '12px',
                       fontWeight: 400
                     }}
@@ -203,7 +204,7 @@ const ProjectTabDemo = () => {
                   <p 
                     className="text-gray-600 mb-8 leading-relaxed"
                     style={{
-                      fontFamily: 'Inter, sans-serif',
+                      fontFamily: 'Arial Rounded MT Regular, Arial, sans-serif',
                       fontSize: '16px',
                       fontWeight: 400,
                       lineHeight: '24px',
@@ -235,7 +236,7 @@ const ProjectTabDemo = () => {
                           <span 
                             className="text-gray-900"
                             style={{
-                              fontFamily: 'Satoshi, "Satoshi Placeholder", sans-serif',
+                              fontFamily: 'Arial Rounded MT Regular, Arial, sans-serif',
                               fontSize: '24px',
                               fontWeight: 600,
                               lineHeight: '1'
@@ -247,7 +248,7 @@ const ProjectTabDemo = () => {
                         <p 
                           className="text-gray-600 text-center"
                           style={{
-                            fontFamily: 'Inter, sans-serif',
+                            fontFamily: 'Arial Rounded MT Regular, Arial, sans-serif',
                             fontSize: '16px',
                             fontWeight: 400,
                             opacity: 0.8
