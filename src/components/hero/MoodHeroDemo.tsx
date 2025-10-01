@@ -2,6 +2,136 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 
+// 일반 채팅창 컴포넌트 (작은 박스)
+const GeneralChatCursor = ({ 
+  onChatClick,
+  onMessageSubmit,
+  isProcessing
+}: { 
+  onChatClick: (e: React.MouseEvent) => void;
+  onMessageSubmit: (message: string) => void;
+  isProcessing: boolean;
+}) => {
+  const [message, setMessage] = React.useState('');
+  const [selectedStyle, setSelectedStyle] = React.useState('Auto');
+  const [isDropdownOpen, setIsDropdownOpen] = React.useState(false);
+
+  return (
+    <div className="relative">
+      {/* 작은 채팅 박스 - 처리 중일 때는 숨김 */}
+      {!isProcessing && (
+        <div 
+          className="absolute left-9 top-7 pointer-events-auto"
+        >
+          <form 
+            className="rounded-xl flex items-center justify-between px-3 gap-2"
+            style={{
+              width: '302px',
+              height: '36px',
+              backgroundColor: '#2C2C2C',
+              boxShadow: '0 4px 6px rgba(0, 0, 0, 0.25)'
+            }}
+            onSubmit={(e) => {
+              e.preventDefault();
+              onMessageSubmit(message);
+              setMessage(''); // 입력창 초기화
+            }}
+          >
+          <input
+            type="text"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            placeholder="Change image/video"
+            className="flex-1 bg-transparent text-white text-sm outline-none placeholder-white/60 text-left"
+            style={{ fontFamily: 'Arial, sans-serif' }}
+            autoFocus
+          />
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
+            <path fillRule="evenodd" clipRule="evenodd" d="M12.6759 9.30377C12.4566 9.52315 12.1005 9.52315 11.8806 9.30377L9.5625 6.98064V12.9375C9.5625 13.2469 9.31106 13.5 9 13.5C8.68894 13.5 8.4375 13.2469 8.4375 12.9375V6.98064L6.11944 9.30377C5.8995 9.52315 5.54287 9.52315 5.32406 9.30377C5.10412 9.07877 5.10412 8.72437 5.32406 8.505L8.50556 5.32123C8.64056 5.18623 8.82506 5.14685 9 5.1806C9.17494 5.14685 9.35944 5.18623 9.49444 5.32123L12.6759 8.505C12.8959 8.72437 12.8959 9.07877 12.6759 9.30377ZM9 0C4.02919 0 0 4.0275 0 9C0 13.9725 4.02919 18 9 18C13.9708 18 18 13.9725 18 9C18 4.0275 13.9708 0 9 0Z" fill="white"/>
+          </svg>
+          <svg width="1" height="21" viewBox="0 0 1 21" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
+            <line x1="0.25" x2="0.25" y2="21" stroke="white" strokeWidth="0.5"/>
+          </svg>
+          <div className="relative">
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsDropdownOpen(!isDropdownOpen);
+              }}
+              className="text-white text-xs hover:opacity-80 transition-opacity rounded flex items-center justify-center gap-0.5"
+              style={{ 
+                width: '70px',
+                height: '20px',
+                fontFamily: 'Arial, sans-serif',
+                border: '0.5px solid white',
+                lineHeight: '1',
+                cursor: 'pointer'
+              }}
+            >
+              <span style={{ marginTop: '2px' }}>{selectedStyle}</span>
+              <svg width="6" height="5" viewBox="0 0 6 5" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ marginTop: '1px' }}>
+                <path d="M2.4707 4.87109L0.214844 0.408203L1.12305 0.408203L2.73437 3.78711L2.79297 3.78711L4.41406 0.408203L5.32227 0.408203L3.05664 4.87109L2.4707 4.87109Z" fill="white"/>
+              </svg>
+            </button>
+            {isDropdownOpen && (
+              <div 
+                className="absolute top-full mt-1 right-0 bg-[#2C2C2C] rounded-lg shadow-lg py-1 z-50"
+                style={{ minWidth: '100px' }}
+              >
+                {['Auto', 'Cartoon','Cinematic', 'Pastel', 'Minimal', 'Realistic', 'Abstract'].map((style) => (
+                  <button
+                    key={style}
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedStyle(style);
+                      setIsDropdownOpen(false);
+                    }}
+                    className="w-full text-left px-3 py-1.5 text-white text-xs hover:bg-white/10 transition-colors"
+                    style={{ fontFamily: 'Arial, sans-serif' }}
+                  >
+                    {style}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+        </form>
+      </div>
+      )}
+    
+    {/* 파란색 커서 - 처리 중일 때는 숨김 */}
+    {!isProcessing && (
+      <svg
+      width="36"
+      height="39"
+      viewBox="0 0 397 434"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className="text-sky-400"
+    >
+      <g filter="url(#filter0_d_general)">
+        <path d="M40.7003 32.7814C38.9441 24.3881 47.9293 17.86 55.3691 22.1239L351.836 192.032C359.379 196.356 358.126 207.597 349.816 210.154L205.925 254.417C203.697 255.102 201.78 256.549 200.511 258.504L128.496 369.439C123.666 376.879 112.249 374.745 110.433 366.063L40.7003 32.7814Z" fill="#38bdf8"/>
+        <path d="M346.894 200.655L203.003 244.918C198.547 246.288 194.714 249.183 192.175 253.093L120.16 364.027L50.4271 30.7463L346.894 200.655Z" stroke="white" strokeWidth="19.8759"/>
+      </g>
+      <defs>
+        <filter id="filter0_d_general" x="0.725891" y="0.905533" width="395.86" height="432.694" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+          <feFlood floodOpacity="0" result="BackgroundImageFix"/>
+          <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+          <feOffset dy="19.8759"/>
+          <feGaussianBlur stdDeviation="19.8759"/>
+          <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.28 0"/>
+          <feBlend mode="normal" in="BackgroundImageFix" result="effect1_dropShadow_2_20"/>
+          <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_2_20" result="shape"/>
+        </filter>
+      </defs>
+    </svg>
+    )}
+    </div>
+  );
+};
+
 // 파란색 커서와 말풍선을 함께 표시하는 컴포넌트
 const BlueCursorWithTooltip = ({ 
   onTooltipClick, 
@@ -56,7 +186,7 @@ const BlueCursorWithTooltip = ({
         </defs>
       </svg>
     </div>
-
+    
     {/* 확장된 박스 */}
     {showBox && (
       <motion.div
@@ -219,30 +349,30 @@ const BlueCursorWithTooltip = ({
     
     {/* 파란색 커서 - showBox가 false일 때만 표시 */}
     {!showBox && (
-      <svg
-        width="36"
-        height="39"
-        viewBox="0 0 397 434"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        className="text-sky-400"
-      >
-        <g filter="url(#filter0_d_blue)">
-          <path d="M40.7003 32.7814C38.9441 24.3881 47.9293 17.86 55.3691 22.1239L351.836 192.032C359.379 196.356 358.126 207.597 349.816 210.154L205.925 254.417C203.697 255.102 201.78 256.549 200.511 258.504L128.496 369.439C123.666 376.879 112.249 374.745 110.433 366.063L40.7003 32.7814Z" fill="#38bdf8"/>
-          <path d="M346.894 200.655L203.003 244.918C198.547 246.288 194.714 249.183 192.175 253.093L120.16 364.027L50.4271 30.7463L346.894 200.655Z" stroke="white" strokeWidth="19.8759"/>
-        </g>
-        <defs>
-          <filter id="filter0_d_blue" x="0.725891" y="0.905533" width="395.86" height="432.694" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
-            <feFlood floodOpacity="0" result="BackgroundImageFix"/>
-            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-            <feOffset dy="19.8759"/>
-            <feGaussianBlur stdDeviation="19.8759"/>
-            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.28 0"/>
-            <feBlend mode="normal" in="BackgroundImageFix" result="effect1_dropShadow_2_20"/>
-            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_2_20" result="shape"/>
-          </filter>
-        </defs>
-      </svg>
+    <svg
+      width="36"
+      height="39"
+      viewBox="0 0 397 434"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className="text-sky-400"
+    >
+      <g filter="url(#filter0_d_blue)">
+        <path d="M40.7003 32.7814C38.9441 24.3881 47.9293 17.86 55.3691 22.1239L351.836 192.032C359.379 196.356 358.126 207.597 349.816 210.154L205.925 254.417C203.697 255.102 201.78 256.549 200.511 258.504L128.496 369.439C123.666 376.879 112.249 374.745 110.433 366.063L40.7003 32.7814Z" fill="#38bdf8"/>
+        <path d="M346.894 200.655L203.003 244.918C198.547 246.288 194.714 249.183 192.175 253.093L120.16 364.027L50.4271 30.7463L346.894 200.655Z" stroke="white" strokeWidth="19.8759"/>
+      </g>
+      <defs>
+        <filter id="filter0_d_blue" x="0.725891" y="0.905533" width="395.86" height="432.694" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+          <feFlood floodOpacity="0" result="BackgroundImageFix"/>
+          <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+          <feOffset dy="19.8759"/>
+          <feGaussianBlur stdDeviation="19.8759"/>
+          <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.28 0"/>
+          <feBlend mode="normal" in="BackgroundImageFix" result="effect1_dropShadow_2_20"/>
+          <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_2_20" result="shape"/>
+        </filter>
+      </defs>
+    </svg>
     )}
   </div>
 );
@@ -295,6 +425,9 @@ export const MoodHeroDemo = () => {
   const [hoveredNavItem, setHoveredNavItem] = useState<number | null>(null);
   const [selectedButton, setSelectedButton] = useState<number | null>(null);
   const [selectedNavItem, setSelectedNavItem] = useState<number | null>(null);
+  const [isGeneralChat, setIsGeneralChat] = useState(false);
+  const [isVideoBackground, setIsVideoBackground] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false);
 
   const handleClick = (e: React.MouseEvent) => {
     // 커서가 이미 있으면 제거
@@ -304,12 +437,13 @@ export const MoodHeroDemo = () => {
       setShowImages(false); // 이미지도 초기화
       setCtaButtonClicked(false); // CTA 모드 초기화
       setNavbarClicked(false); // navbar 모드 초기화
+      setIsGeneralChat(false); // 일반 채팅 모드 초기화
       setHoveredButton(null);
       setHoveredNavItem(null);
       return;
     }
     
-    // 커서가 없으면 생성
+    // 커서가 없으면 생성 (일반 채팅 모드)
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
@@ -321,6 +455,7 @@ export const MoodHeroDemo = () => {
     };
     
     setClickedCursor(newCursor);
+    setIsGeneralChat(true); // 일반 채팅 모드 활성화
   };
 
   const handleTooltipClick = (e: React.MouseEvent) => {
@@ -336,7 +471,7 @@ export const MoodHeroDemo = () => {
       setShowImages(false);
       
       // 2초 후에 이미지 표시
-      setTimeout(() => {
+    setTimeout(() => {
         setShowImages(true);
       }, 2000);
     }
@@ -354,6 +489,19 @@ export const MoodHeroDemo = () => {
     setClickedCursor(null); // 커서 닫기
     setShowBox(false); // 박스 닫기
     setShowImages(false);
+  };
+
+  const handleMessageSubmit = (message: string) => {
+    if (message.toLowerCase() === 'make it moov') {
+      setIsProcessing(true);
+      setClickedCursor(null); // 파란 커서 제거
+      setShowBox(false);
+      setShowImages(false);
+      setTimeout(() => {
+        setIsVideoBackground(true);
+        setIsProcessing(false);
+      }, 4000);
+    }
   };
   return (
     <>
@@ -389,6 +537,7 @@ export const MoodHeroDemo = () => {
             e.stopPropagation();
             setNavbarClicked(true);
             setCtaButtonClicked(false); // CTA 모드 해제
+            setIsGeneralChat(false); // 일반 채팅 모드 해제
             setHoveredButton(null); // CTA 버튼 호버 초기화
             
             // 마우스 위치에 커서 생성
@@ -509,7 +658,7 @@ export const MoodHeroDemo = () => {
         </nav>
       )}
 
-    <div className="relative min-h-screen overflow-hidden" onClick={handleClick}>
+    <div className="relative min-h-screen overflow-hidden" onClick={handleClick} style={{ cursor: isProcessing ? 'wait' : 'auto' }}>
        {/* 폰트 정의 */}
        <style jsx>{`
          @font-face {
@@ -525,14 +674,25 @@ export const MoodHeroDemo = () => {
            font-style: normal;
          }
        `}</style>
-      {/* 배경 이미지 - mood-1.svg */}
+      {/* 배경 - 이미지 또는 비디오 */}
+      {isVideoBackground ? (
+        <video
+          className="absolute inset-0 w-full h-full object-cover"
+          autoPlay
+          loop
+          muted
+          playsInline
+        >
+          <source src="/herovideo.mp4" type="video/mp4" />
+        </video>
+      ) : (
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage: `url('/mood-1.svg')`
         }}
-      >
-      </div>
+        />
+      )}
 
 
        {/* 메인 콘텐츠 - 중앙 배치 */}
@@ -625,21 +785,22 @@ export const MoodHeroDemo = () => {
               />
             </motion.div>
           ) : (
-            <motion.button
-              className="bg-white text-black rounded-2xl font-medium cursor-default hover:shadow-[0_0_0_2px_#38bdf8]"
-              style={{ 
-                fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif',
-                fontWeight: '500',
-                padding: '11.2px 22.4px',
-                fontSize: '16px'
-              }}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
+          <motion.button
+            className="bg-white text-black rounded-2xl font-medium cursor-default hover:shadow-[0_0_0_2px_#38bdf8]"
+            style={{ 
+              fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif',
+              fontWeight: '500',
+              padding: '11.2px 22.4px',
+              fontSize: '16px'
+            }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
               onClick={(e) => {
                 e.stopPropagation();
                 setCtaButtonClicked(true);
                 setNavbarClicked(false); // navbar 모드 해제
+                setIsGeneralChat(false); // 일반 채팅 모드 해제
                 setHoveredNavItem(null); // navbar 호버 초기화
                 
                 // 버튼의 오른쪽 아래 코너에 커서 생성
@@ -657,9 +818,9 @@ export const MoodHeroDemo = () => {
                   }
                 }
               }}
-            >
-              Start free decoration
-            </motion.button>
+          >
+            Start free decoration
+          </motion.button>
           )}
         </div>
       </div>
@@ -774,18 +935,32 @@ export const MoodHeroDemo = () => {
             duration: 0.3 
           }}
         >
-          <BlueCursorWithTooltip 
-            onTooltipClick={handleTooltipClick} 
-            showBox={showBox} 
-            showImages={showImages}
-            ctaButtonClicked={ctaButtonClicked}
-            onButtonHover={setHoveredButton}
-            navbarClicked={navbarClicked}
-            onNavItemHover={setHoveredNavItem}
-            onButtonClick={handleButtonClick}
-            onNavItemClick={handleNavItemClick}
-          />
+          {isGeneralChat ? (
+            /* 일반 채팅창 */
+            <GeneralChatCursor onChatClick={handleTooltipClick} onMessageSubmit={handleMessageSubmit} isProcessing={isProcessing} />
+          ) : (
+            /* CTA/Navbar 채팅창 */
+            <BlueCursorWithTooltip 
+              onTooltipClick={handleTooltipClick} 
+              showBox={showBox} 
+              showImages={showImages}
+              ctaButtonClicked={ctaButtonClicked}
+              onButtonHover={setHoveredButton}
+              navbarClicked={navbarClicked}
+              onNavItemHover={setHoveredNavItem}
+              onButtonClick={handleButtonClick}
+              onNavItemClick={handleNavItemClick}
+            />
+          )}
         </motion.div>
+      )}
+      
+      {/* 로딩 오버레이 - 전체 화면 cursor: wait */}
+      {isProcessing && (
+        <div 
+          className="fixed inset-0 z-[9999999]" 
+          style={{ cursor: 'wait' }}
+        />
       )}
     </div>
     </>
