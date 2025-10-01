@@ -146,7 +146,7 @@ const ThreeCardDemo = () => {
               <div className="space-y-3">
                 {/* Active Button */}
                 <motion.button
-                  className="w-full bg-white text-gray-800 px-4 py-3 rounded-xl flex items-center justify-between font-medium shadow-sm"
+                  className="w-full bg-white text-gray-800 px-4 py-3 rounded-xl flex items-center justify-between font-medium"
                   style={{
                     fontFamily: 'Playfair Display Italic, Georgia, Times New Roman, serif',
                     fontWeight: 400,

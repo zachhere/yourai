@@ -8,8 +8,8 @@ import OrbProcessDemo from '../components/process/OrbProcessDemo';
 import ProjectTabDemo from '../components/cards/ProjectTabDemo';
 import ThreeCardDemo from '../components/cards/ThreeCardDemo';
 import TestimonialsDemo from '../components/testimonials/TestimonialsDemo';
-import { PricingTableDemo } from '../components/pricing/PricingTableDemo';
-import { FaqSectionWithCategoriesDemo } from '../components/faq/FAQMiddleDemo';
+import TeamDemo from '../components/team/TeamDemo';
+import FAQsComponentsDemo from '../components/faq/FAQsComponentsDemo';
 import { StackedCircularFooterDemo } from '../components/footer/StackCircularFooterMiddleDemo';
 import OrbFeatureDemo from '../components/features/OrbFeatureDemo';
 import { motion } from 'framer-motion';
@@ -416,7 +416,7 @@ export default function MixTemplate() {
         <TestimonialsDemo />
       </motion.div>
       
-      {/* Pricing 섹션 - OrbaiTemplate에서 가져옴 */}
+      {/* Team 섹션 */}
       <motion.div 
         className="py-24"
         initial={{ opacity: 0, y: 20 }}
@@ -424,40 +424,7 @@ export default function MixTemplate() {
         transition={{ duration: 0.6, ease: "easeOut" }}
         viewport={{ once: true }}
       >
-        <div className="text-center mb-16">
-          <motion.h2 
-            className="mb-6"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-          >
-            <span 
-              style={{
-                fontSize: '56px',
-                color: '#000000',
-                letterSpacing: '-0.56px',
-                lineHeight: '67.2px',
-                WebkitFontSmoothing: 'antialiased'
-              }}
-            >
-              <span style={{
-                fontFamily: 'Arial Rounded MT Regular, Arial, sans-serif',
-                fontWeight: 100
-              }}>Simple </span>
-              <span style={{
-                fontFamily: 'Playfair Display Italic, Georgia, Times New Roman, serif',
-                fontWeight: 400,
-                fontStyle: 'italic'
-              }}>pricing </span>
-              <span style={{
-                fontFamily: 'Arial Rounded MT Regular, Arial, sans-serif',
-                fontWeight: 100
-              }}>plans</span>
-            </span>
-          </motion.h2>
-        </div>
-        <PricingTableDemo />
+        <TeamDemo />
       </motion.div>
       
       {/* FAQ 섹션 - OrbaiTemplate에서 가져옴, SimpleSaaSTemplate 스타일에 맞춰 조정 */}
@@ -470,32 +437,8 @@ export default function MixTemplate() {
         viewport={{ once: true }}
       >
         <div className="max-w-7xl mx-auto">
-          {/* Header Section - SimpleSaaSTemplate 스타일에 맞춰 조정 */}
-          <motion.div 
-            className="text-center mb-25"
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="mb-6">
-              <span 
-                style={{
-                  fontSize: '40px',
-                  color: '#121212',
-                  letterSpacing: '-0.4px',
-                  lineHeight: '48px',
-                }}
-              >
-                <span style={{
-                  fontFamily: 'Arial Rounded MT Regular, Arial, sans-serif',
-                  fontWeight: '100'
-                }}>FAQ</span>
-              </span>
-            </h2>
-          </motion.div>
           
-          <FaqSectionWithCategoriesDemo />
+          <FAQsComponentsDemo />
         </div>
       </motion.section>
       

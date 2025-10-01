@@ -11,7 +11,7 @@ const ProjectTabDemo = () => {
       number: "01",
       title: "CarePath — Virtual Health Guide",
       description: "We built an AI assistant that listens to symptoms and guides patients toward the right treatment in real time.",
-      image: "https://framerusercontent.com/images/BlgeL0EotFTQ0vq42WKucxKVO4.png?width=960&height=1200",
+      image: "/images/carepath.jpg",
       stats: [
         { value: "44%", label: "Quicker diagnosis support" },
         { value: "28%", label: "Increase in patient trust" }
@@ -22,7 +22,7 @@ const ProjectTabDemo = () => {
       number: "02", 
       title: "TradeMind — AI Market Navigator",
       description: "We created an intelligent platform that interprets financial signals and executes trades with smart automation.",
-      image: "https://framerusercontent.com/images/BlgeL0EotFTQ0vq42WKucxKVO4.png?width=960&height=1200",
+      image: "/images/trademind.jpg",
       stats: [
         { value: "47%", label: "Better forecasting accuracy" },
         { value: "30%", label: "Drop in trading mistakes" }
@@ -33,7 +33,7 @@ const ProjectTabDemo = () => {
       number: "03",
       title: "TeamFlow — AI HR Assistant", 
       description: "We designed an automation bot that streamlines onboarding, manages employee requests, and answers HR questions instantly.",
-      image: "https://framerusercontent.com/images/BlgeL0EotFTQ0vq42WKucxKVO4.png?width=960&height=1200",
+      image: "/images/teamflow.jpg",
       stats: [
         { value: "20%", label: "Less administrative workload" },
         { value: "12%", label: "Higher team efficiency" }
@@ -74,12 +74,12 @@ const ProjectTabDemo = () => {
 
         {/* Main Container - 1200x576.1 */}
         <motion.div 
-          className="mx-auto rounded-2xl shadow-lg border border-gray-200 flex flex-col"
+          className="mx-auto rounded-2xl border border-gray-200 flex flex-col"
           style={{
             width: '1200px',
             height: '576.1px',
             backgroundColor: '#EFEAE5',
-            boxShadow: 'rgba(0, 0, 0, 0.08) 0px 0.706592px 0.706592px -0.666667px, rgba(0, 0, 0, 0.08) 0px 1.80656px 1.80656px -1.33333px, rgba(0, 0, 0, 0.07) 0px 3.62176px 3.62176px -2px, rgba(0, 0, 0, 0.07) 0px 6.8656px 6.8656px -2.66667px, rgba(0, 0, 0, 0.05) 0px 13.6468px 13.6468px -3.33333px, rgba(0, 0, 0, 0.02) 0px 30px 30px -4px, rgb(255, 255, 255) 0px 3px 1px 0px inset'
+            boxShadow: 'none'
           }}
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -102,15 +102,13 @@ const ProjectTabDemo = () => {
                 onClick={() => setActiveTab(index)}
                 className={`flex items-center justify-center rounded-lg transition-all duration-300 ${
                   activeTab === index 
-                    ? 'bg-white shadow-lg' 
+                    ? 'bg-white' 
                     : 'bg-gray-50 hover:bg-gray-100'
                 }`}
                 style={{
                   width: '376px',
                   height: '44px',
-                  boxShadow: activeTab === index 
-                    ? 'rgba(0, 0, 0, 0.08) 0px 0.706592px 0.706592px -0.666667px, rgba(0, 0, 0, 0.08) 0px 1.80656px 1.80656px -1.33333px, rgba(0, 0, 0, 0.07) 0px 3.62176px 3.62176px -2px, rgba(0, 0, 0, 0.07) 0px 6.8656px 6.8656px -2.66667px, rgba(0, 0, 0, 0.05) 0px 13.6468px 13.6468px -3.33333px, rgba(0, 0, 0, 0.02) 0px 30px 30px -4px, rgb(255, 255, 255) 0px 3px 1px 0px inset'
-                    : 'rgba(0, 0, 0, 0.08) 0px 0.706592px 0.706592px -0.666667px, rgba(0, 0, 0, 0.08) 0px 1.80656px 1.80656px -1.33333px, rgba(0, 0, 0, 0.07) 0px 3.62176px 3.62176px -2px, rgba(0, 0, 0, 0.07) 0px 6.8656px 6.8656px -2.66667px, rgba(0, 0, 0, 0.05) 0px 13.6468px 13.6468px -3.33333px, rgba(0, 0, 0, 0.02) 0px 30px 30px -4px, rgb(255, 255, 255) 0px 3px 1px 0px inset'
+                  boxShadow: 'none'
                 }}
               >
                 <span 
@@ -161,7 +159,7 @@ const ProjectTabDemo = () => {
                     className="w-full h-full object-cover"
                     style={{ 
                       borderRadius: '16px',
-                      boxShadow: 'rgba(0, 0, 0, 0.08) 0px 0.706592px 0.706592px -0.666667px, rgba(0, 0, 0, 0.08) 0px 1.80656px 1.80656px -1.33333px, rgba(0, 0, 0, 0.07) 0px 3.62176px 3.62176px -2px, rgba(0, 0, 0, 0.07) 0px 6.8656px 6.8656px -2.66667px, rgba(0, 0, 0, 0.05) 0px 13.6468px 13.6468px -3.33333px, rgba(0, 0, 0, 0.02) 0px 30px 30px -4px'
+                      boxShadow: 'none'
                     }}
                   />
                 </div>
@@ -222,9 +220,9 @@ const ProjectTabDemo = () => {
                          initial={{ opacity: 0, x: -12 }}
                          animate={{ opacity: 1, x: 0 }}
                          transition={{ delay: 0.2, duration: 0.3 }}
-                         className="bg-white rounded-xl shadow-lg border border-gray-200 p-6 flex-1"
+                         className="bg-white rounded-xl border border-gray-200 p-6 flex-1"
                          style={{
-                           boxShadow: 'rgba(0, 0, 0, 0.08) 0px 0.706592px 0.706592px -0.666667px, rgba(0, 0, 0, 0.08) 0px 1.80656px 1.80656px -1.33333px, rgba(0, 0, 0, 0.07) 0px 3.62176px 3.62176px -2px, rgba(0, 0, 0, 0.07) 0px 6.8656px 6.8656px -2.66667px, rgba(0, 0, 0, 0.05) 0px 13.6468px 13.6468px -3.33333px, rgba(0, 0, 0, 0.02) 0px 30px 30px -4px, rgb(255, 255, 255) 0px 3px 1px 0px inset'
+                           boxShadow: 'none'
                          }}
                        >
                         <div className="flex items-baseline justify-center gap-1 mb-2">

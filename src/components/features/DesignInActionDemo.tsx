@@ -83,13 +83,13 @@ const DesignInActionDemo = () => {
           {features.map((feature, index) => (
              <motion.div 
                key={feature.id}
-               className="rounded-2xl shadow-lg border border-gray-200 flex flex-col relative group cursor-pointer"
+               className="rounded-2xl border border-gray-200 flex flex-col relative group cursor-pointer"
                style={{
                  width: '504px',
                  height: '589px',
                  padding: '20px',
                  backgroundColor: '#EFEAE5',
-                 boxShadow: 'rgba(0, 0, 0, 0.08) 0px 0.706592px 0.706592px -0.666667px, rgba(0, 0, 0, 0.08) 0px 1.80656px 1.80656px -1.33333px, rgba(0, 0, 0, 0.07) 0px 3.62176px 3.62176px -2px, rgba(0, 0, 0, 0.07) 0px 6.8656px 6.8656px -2.66667px, rgba(0, 0, 0, 0.05) 0px 13.6468px 13.6468px -3.33333px, rgba(0, 0, 0, 0.02) 0px 30px 30px -4px, rgb(255, 255, 255) 0px 3px 1px 0px inset'
+                 boxShadow: 'none'
                }}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -183,7 +183,7 @@ const DesignInActionDemo = () => {
                 <button
                   className="w-full h-full rounded-full bg-gray-800 hover:bg-gray-700 flex items-center justify-center transition-colors duration-200 ease-out"
                   style={{
-                    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)'
+                    boxShadow: 'none'
                   }}
                 >
                   <svg

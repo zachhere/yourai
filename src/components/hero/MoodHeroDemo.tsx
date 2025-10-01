@@ -133,12 +133,13 @@ export const MoodHeroDemo = () => {
 
           {/* CTA 버튼 */}
           <motion.button 
-            className="bg-white text-black rounded-2xl font-medium"
+            className="bg-white text-black rounded-2xl font-medium border-0"
             style={{ 
               fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif',
               fontWeight: '500',
               padding: '11.2px 22.4px',
-              fontSize: '16px'
+              fontSize: '16px',
+              boxShadow: 'none'
             }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

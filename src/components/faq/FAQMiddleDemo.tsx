@@ -104,7 +104,6 @@ const FaqSectionWithCategories = React.forwardRef<HTMLElement, FaqSectionWithCat
                       "mb-4 rounded-xl",
                       "bg-card text-card-foreground",
                       "border border-border/60",
-                      "shadow-sm dark:shadow-black/10"
                     )}
                   >
                     {/* Question Button */}

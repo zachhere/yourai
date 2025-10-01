@@ -51,3 +51,15 @@ body {
 .animate-skew-scroll {
   animation: skew-scroll 20s linear infinite;
 }
+
+.arial-rounded-text {
+  font-family: 'Arial Rounded MT Regular', Arial, sans-serif !important;
+  font-weight: 100 !important;
+  font-style: normal !important;
+}
+
+.playfair-italic {
+  font-family: 'Playfair Display Italic', Georgia, Times New Roman, serif !important;
+  font-weight: 400 !important;
+  font-style: italic !important;
+}
