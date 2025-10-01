@@ -6,11 +6,15 @@ import { motion } from "framer-motion";
 const BlueCursorWithTooltip = ({ 
   onTooltipClick, 
   showBox,
-  showImages
+  showImages,
+  ctaButtonClicked,
+  onButtonHover
 }: { 
   onTooltipClick: (e: React.MouseEvent) => void;
   showBox: boolean;
   showImages: boolean;
+  ctaButtonClicked: boolean;
+  onButtonHover: (buttonNumber: number | null) => void;
 }) => (
   <div className="relative">
     {/* 말풍선 */}
@@ -95,32 +99,44 @@ const BlueCursorWithTooltip = ({
                 alt="Option 1"
                 className="h-12 w-auto object-contain cursor-pointer flex-shrink-0"
                 initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.3 }}
+                animate={{ opacity: 1, scale: 1, transition: { duration: 0.3 } }}
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                onMouseEnter={() => ctaButtonClicked && onButtonHover(1)}
+                onMouseLeave={() => ctaButtonClicked && onButtonHover(null)}
               />
               <motion.img
                 src="/images/button2.png"
                 alt="Option 2"
                 className="h-12 w-auto object-contain cursor-pointer flex-shrink-0"
                 initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.3, delay: 0.1 }}
+                animate={{ opacity: 1, scale: 1, transition: { duration: 0.3, delay: 0.1 } }}
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                onMouseEnter={() => ctaButtonClicked && onButtonHover(2)}
+                onMouseLeave={() => ctaButtonClicked && onButtonHover(null)}
               />
               <motion.img
                 src="/images/button3.png"
                 alt="Option 3"
                 className="h-12 w-auto object-contain cursor-pointer flex-shrink-0"
                 initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.3, delay: 0.2 }}
+                animate={{ opacity: 1, scale: 1, transition: { duration: 0.3, delay: 0.2 } }}
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                onMouseEnter={() => ctaButtonClicked && onButtonHover(3)}
+                onMouseLeave={() => ctaButtonClicked && onButtonHover(null)}
               />
               <motion.img
                 src="/images/button4.png"
                 alt="Option 4"
                 className="h-12 w-auto object-contain cursor-pointer flex-shrink-0"
                 initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.3, delay: 0.3 }}
+                animate={{ opacity: 1, scale: 1, transition: { duration: 0.3, delay: 0.3 } }}
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                onMouseEnter={() => ctaButtonClicked && onButtonHover(4)}
+                onMouseLeave={() => ctaButtonClicked && onButtonHover(null)}
               />
             </>
           )}
@@ -200,6 +216,8 @@ export const MoodHeroDemo = () => {
   const [clickedCursor, setClickedCursor] = useState<{ id: number; x: number; y: number } | null>(null);
   const [showBox, setShowBox] = useState(false);
   const [showImages, setShowImages] = useState(false);
+  const [ctaButtonClicked, setCtaButtonClicked] = useState(false);
+  const [hoveredButton, setHoveredButton] = useState<number | null>(null);
 
   const handleClick = (e: React.MouseEvent) => {
     // 커서가 이미 있으면 제거
@@ -332,21 +350,56 @@ export const MoodHeroDemo = () => {
              </span>
            </motion.h2>
 
-          {/* CTA 버튼 */}
-          <motion.button
-            className="bg-white text-black rounded-2xl font-medium cursor-default hover:shadow-[0_0_0_2px_#38bdf8]"
-            style={{ 
-              fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif',
-              fontWeight: '500',
-              padding: '11.2px 22.4px',
-              fontSize: '16px'
-            }}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
-          >
-            Start free decoration
-          </motion.button>
+          {/* CTA 버튼 또는 이미지 미리보기 */}
+          {ctaButtonClicked && hoveredButton !== null ? (
+            <motion.div
+              className="flex items-center justify-center"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5 }}
+            >
+              <img
+                src={`/images/button${hoveredButton}.png`}
+                alt={`Button ${hoveredButton} Preview`}
+                className="h-auto max-w-full object-contain"
+                style={{ maxHeight: '60px' }}
+              />
+            </motion.div>
+          ) : (
+            <motion.button
+              className="bg-white text-black rounded-2xl font-medium cursor-default hover:shadow-[0_0_0_2px_#38bdf8]"
+              style={{ 
+                fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif',
+                fontWeight: '500',
+                padding: '11.2px 22.4px',
+                fontSize: '16px'
+              }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
+              onClick={(e) => {
+                e.stopPropagation();
+                setCtaButtonClicked(true);
+                
+                // 버튼의 오른쪽 아래 코너에 커서 생성
+                if (!clickedCursor) {
+                  const rect = e.currentTarget.getBoundingClientRect();
+                  const parentRect = e.currentTarget.closest('.relative.min-h-screen')?.getBoundingClientRect();
+                  
+                  if (parentRect) {
+                    const newCursor = {
+                      id: Date.now(),
+                      x: rect.right - parentRect.left + 4,
+                      y: rect.bottom - parentRect.top  - 6
+                    };
+                    setClickedCursor(newCursor);
+                  }
+                }
+              }}
+            >
+              Start free decoration
+            </motion.button>
+          )}
         </div>
       </div>
 
@@ -460,7 +513,13 @@ export const MoodHeroDemo = () => {
             duration: 0.3 
           }}
         >
-          <BlueCursorWithTooltip onTooltipClick={handleTooltipClick} showBox={showBox} showImages={showImages} />
+          <BlueCursorWithTooltip 
+            onTooltipClick={handleTooltipClick} 
+            showBox={showBox} 
+            showImages={showImages}
+            ctaButtonClicked={ctaButtonClicked}
+            onButtonHover={setHoveredButton}
+          />
         </motion.div>
       )}
     </div>
