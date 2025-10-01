@@ -8,13 +8,21 @@ const BlueCursorWithTooltip = ({
   showBox,
   showImages,
   ctaButtonClicked,
-  onButtonHover
+  onButtonHover,
+  navbarClicked,
+  onNavItemHover,
+  onButtonClick,
+  onNavItemClick
 }: { 
   onTooltipClick: (e: React.MouseEvent) => void;
   showBox: boolean;
   showImages: boolean;
   ctaButtonClicked: boolean;
   onButtonHover: (buttonNumber: number | null) => void;
+  navbarClicked: boolean;
+  onNavItemHover: (item: number | null) => void;
+  onButtonClick: (buttonNumber: number) => void;
+  onNavItemClick: (item: number) => void;
 }) => (
   <div className="relative">
     {/* 말풍선 */}
@@ -91,8 +99,57 @@ const BlueCursorWithTooltip = ({
                 }}
               />
             ))
-          ) : (
-            /* 4개의 이미지 */
+          ) : navbarClicked && !ctaButtonClicked ? (
+            /* navbar 클릭 시 nav 이미지들 */
+            <>
+              <motion.img
+                src="/images/nav1.png"
+                alt="Nav 1"
+                className="h-12 w-auto object-contain cursor-pointer flex-shrink-0"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1, transition: { duration: 0.3 } }}
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                onMouseEnter={() => onNavItemHover(1)}
+                onMouseLeave={() => onNavItemHover(null)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onNavItemClick(1);
+                }}
+              />
+              <motion.img
+                src="/images/nav2.png"
+                alt="Nav 2"
+                className="h-12 w-auto object-contain cursor-pointer flex-shrink-0"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1, transition: { duration: 0.3, delay: 0.1 } }}
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                onMouseEnter={() => onNavItemHover(2)}
+                onMouseLeave={() => onNavItemHover(null)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onNavItemClick(2);
+                }}
+              />
+              <motion.img
+                src="/images/nav3.png"
+                alt="Nav 3"
+                className="h-12 w-auto object-contain cursor-pointer flex-shrink-0"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1, transition: { duration: 0.3, delay: 0.2 } }}
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                onMouseEnter={() => onNavItemHover(3)}
+                onMouseLeave={() => onNavItemHover(null)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onNavItemClick(3);
+                }}
+              />
+            </>
+          ) : ctaButtonClicked && !navbarClicked ? (
+            /* CTA 버튼 클릭 시 button 이미지들 */
             <>
               <motion.img
                 src="/images/button1.png"
@@ -102,8 +159,12 @@ const BlueCursorWithTooltip = ({
                 animate={{ opacity: 1, scale: 1, transition: { duration: 0.3 } }}
                 whileHover={{ scale: 1.05 }}
                 transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                onMouseEnter={() => ctaButtonClicked && onButtonHover(1)}
-                onMouseLeave={() => ctaButtonClicked && onButtonHover(null)}
+                onMouseEnter={() => onButtonHover(1)}
+                onMouseLeave={() => onButtonHover(null)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onButtonClick(1);
+                }}
               />
               <motion.img
                 src="/images/button2.png"
@@ -113,8 +174,12 @@ const BlueCursorWithTooltip = ({
                 animate={{ opacity: 1, scale: 1, transition: { duration: 0.3, delay: 0.1 } }}
                 whileHover={{ scale: 1.05 }}
                 transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                onMouseEnter={() => ctaButtonClicked && onButtonHover(2)}
-                onMouseLeave={() => ctaButtonClicked && onButtonHover(null)}
+                onMouseEnter={() => onButtonHover(2)}
+                onMouseLeave={() => onButtonHover(null)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onButtonClick(2);
+                }}
               />
               <motion.img
                 src="/images/button3.png"
@@ -124,8 +189,12 @@ const BlueCursorWithTooltip = ({
                 animate={{ opacity: 1, scale: 1, transition: { duration: 0.3, delay: 0.2 } }}
                 whileHover={{ scale: 1.05 }}
                 transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                onMouseEnter={() => ctaButtonClicked && onButtonHover(3)}
-                onMouseLeave={() => ctaButtonClicked && onButtonHover(null)}
+                onMouseEnter={() => onButtonHover(3)}
+                onMouseLeave={() => onButtonHover(null)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onButtonClick(3);
+                }}
               />
               <motion.img
                 src="/images/button4.png"
@@ -135,11 +204,15 @@ const BlueCursorWithTooltip = ({
                 animate={{ opacity: 1, scale: 1, transition: { duration: 0.3, delay: 0.3 } }}
                 whileHover={{ scale: 1.05 }}
                 transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                onMouseEnter={() => ctaButtonClicked && onButtonHover(4)}
-                onMouseLeave={() => ctaButtonClicked && onButtonHover(null)}
+                onMouseEnter={() => onButtonHover(4)}
+                onMouseLeave={() => onButtonHover(null)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onButtonClick(4);
+                }}
               />
             </>
-          )}
+          ) : null}
         </div>
       </motion.div>
     )}
@@ -218,6 +291,10 @@ export const MoodHeroDemo = () => {
   const [showImages, setShowImages] = useState(false);
   const [ctaButtonClicked, setCtaButtonClicked] = useState(false);
   const [hoveredButton, setHoveredButton] = useState<number | null>(null);
+  const [navbarClicked, setNavbarClicked] = useState(false);
+  const [hoveredNavItem, setHoveredNavItem] = useState<number | null>(null);
+  const [selectedButton, setSelectedButton] = useState<number | null>(null);
+  const [selectedNavItem, setSelectedNavItem] = useState<number | null>(null);
 
   const handleClick = (e: React.MouseEvent) => {
     // 커서가 이미 있으면 제거
@@ -225,6 +302,10 @@ export const MoodHeroDemo = () => {
       setClickedCursor(null);
       setShowBox(false); // 커서 제거 시 박스도 제거
       setShowImages(false); // 이미지도 초기화
+      setCtaButtonClicked(false); // CTA 모드 초기화
+      setNavbarClicked(false); // navbar 모드 초기화
+      setHoveredButton(null);
+      setHoveredNavItem(null);
       return;
     }
     
@@ -260,7 +341,174 @@ export const MoodHeroDemo = () => {
       }, 2000);
     }
   };
+
+  const handleButtonClick = (buttonNumber: number) => {
+    setSelectedButton(buttonNumber);
+    setClickedCursor(null); // 커서 닫기
+    setShowBox(false); // 박스 닫기
+    setShowImages(false);
+  };
+
+  const handleNavItemClick = (item: number) => {
+    setSelectedNavItem(item);
+    setClickedCursor(null); // 커서 닫기
+    setShowBox(false); // 박스 닫기
+    setShowImages(false);
+  };
   return (
+    <>
+      {/* Custom Navbar */}
+      {selectedNavItem !== null ? (
+        /* 선택된 Nav 이미지 - 영구 표시 */
+        <div className="fixed top-0 left-0 right-0 z-50 w-full px-6 py-4 flex items-center justify-center">
+          <img
+            src={`/images/nav${selectedNavItem}.png`}
+            alt={`Nav ${selectedNavItem}`}
+            className="h-auto max-w-full object-contain"
+            style={{ maxHeight: '60px' }}
+          />
+        </div>
+      ) : navbarClicked && !ctaButtonClicked && hoveredNavItem !== null ? (
+        /* Nav 이미지 미리보기 - navbar 전체 대체 */
+        <div className="fixed top-0 left-0 right-0 z-50 w-full px-6 py-4 flex items-center justify-center">
+          <motion.img
+            src={`/images/nav${hoveredNavItem}.png`}
+            alt={`Nav ${hoveredNavItem} Preview`}
+            className="h-auto max-w-full object-contain"
+            style={{ maxHeight: '60px' }}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+          />
+        </div>
+      ) : (
+        /* 기본 Navbar */
+        <nav 
+          className="fixed top-0 left-0 right-0 z-50 w-full px-6 py-4 border-2 border-transparent hover:border-sky-400 transition-all cursor-pointer"
+          onClick={(e) => {
+            e.stopPropagation();
+            setNavbarClicked(true);
+            setCtaButtonClicked(false); // CTA 모드 해제
+            setHoveredButton(null); // CTA 버튼 호버 초기화
+            
+            // 마우스 위치에 커서 생성
+            if (!clickedCursor) {
+              const parentRect = document.querySelector('.relative.min-h-screen')?.getBoundingClientRect();
+              
+              if (parentRect) {
+                const newCursor = {
+                  id: Date.now(),
+                  x: e.clientX - parentRect.left + 2,
+                  y: e.clientY - parentRect.top +4
+                };
+                setClickedCursor(newCursor);
+              }
+            }
+          }}
+        >
+          <div className="flex items-center justify-between">
+            {/* Left side - Logo and text */}
+            <div className="flex items-center space-x-3">
+              {/* YourAI Logo */}
+              <div className="w-8 h-8 flex items-center justify-center">
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="text-white"
+                >
+                  <path
+                    d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z"
+                    fill="currentColor"
+                  />
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="3"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+                  <path
+                    d="M12 1V3M12 21V23M4.22 4.22L5.64 5.64M18.36 18.36L19.78 19.78M1 12H3M21 12H23M4.22 19.78L5.64 18.36M18.36 5.64L19.78 4.22"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </div>
+              <span 
+                className="text-white text-lg font-medium"
+                style={{ 
+                  fontFamily: 'Arial Rounded MT Regular, Arial, sans-serif',
+                  fontWeight: '100'
+                }}
+              >
+                YourAI
+              </span>
+            </div>
+
+            {/* Right side - All items in one container */}
+            <div className="bg-black/20 backdrop-blur-sm border border-white/10 rounded-full px-6 py-2">
+              <div className="flex items-center space-x-6">
+                <a 
+                  href="#" 
+                  className="text-white text-sm hover:text-white/80 transition-colors"
+                  style={{ 
+                    fontFamily: 'Arial Rounded MT Regular, Arial, sans-serif',
+                    fontWeight: '100'
+                  }}
+                >
+                  Product
+                </a>
+                <a 
+                  href="#" 
+                  className="text-white text-sm hover:text-white/80 transition-colors"
+                  style={{ 
+                    fontFamily: 'Arial Rounded MT Regular, Arial, sans-serif',
+                    fontWeight: '100'
+                  }}
+                >
+                  Platform
+                </a>
+                <a 
+                  href="#" 
+                  className="text-white text-sm hover:text-white/80 transition-colors"
+                  style={{ 
+                    fontFamily: 'Arial Rounded MT Regular, Arial, sans-serif',
+                    fontWeight: '100'
+                  }}
+                >
+                  Customers
+                </a>
+                <a 
+                  href="#" 
+                  className="text-white text-sm hover:text-white/80 transition-colors"
+                  style={{ 
+                    fontFamily: 'Arial Rounded MT Regular, Arial, sans-serif',
+                    fontWeight: '100'
+                  }}
+                >
+                  Company
+                </a>
+                <button 
+                  className="bg-white text-black px-4 py-2 rounded-full text-sm font-medium hover:bg-white/90 transition-colors cursor-default border-2 border-transparent hover:border-sky-400"
+                  style={{ 
+                    fontFamily: 'Arial Rounded MT Regular, Arial, sans-serif',
+                    fontWeight: '550',
+                    color: 'black'
+                  }}
+                >
+                  Login
+                </button>
+              </div>
+            </div>
+          </div>
+        </nav>
+      )}
+
     <div className="relative min-h-screen overflow-hidden" onClick={handleClick}>
        {/* 폰트 정의 */}
        <style jsx>{`
@@ -351,7 +599,18 @@ export const MoodHeroDemo = () => {
            </motion.h2>
 
           {/* CTA 버튼 또는 이미지 미리보기 */}
-          {ctaButtonClicked && hoveredButton !== null ? (
+          {selectedButton !== null ? (
+            /* 선택된 버튼 이미지 - 영구 표시 */
+            <div className="flex items-center justify-center">
+              <img
+                src={`/images/button${selectedButton}.png`}
+                alt={`Button ${selectedButton}`}
+                className="h-auto max-w-full object-contain"
+                style={{ maxHeight: '60px' }}
+              />
+            </div>
+          ) : ctaButtonClicked && !navbarClicked && hoveredButton !== null ? (
+            /* 미리보기 */
             <motion.div
               className="flex items-center justify-center"
               initial={{ opacity: 0, scale: 0.8 }}
@@ -380,6 +639,8 @@ export const MoodHeroDemo = () => {
               onClick={(e) => {
                 e.stopPropagation();
                 setCtaButtonClicked(true);
+                setNavbarClicked(false); // navbar 모드 해제
+                setHoveredNavItem(null); // navbar 호버 초기화
                 
                 // 버튼의 오른쪽 아래 코너에 커서 생성
                 if (!clickedCursor) {
@@ -519,9 +780,14 @@ export const MoodHeroDemo = () => {
             showImages={showImages}
             ctaButtonClicked={ctaButtonClicked}
             onButtonHover={setHoveredButton}
+            navbarClicked={navbarClicked}
+            onNavItemHover={setHoveredNavItem}
+            onButtonClick={handleButtonClick}
+            onNavItemClick={handleNavItemClick}
           />
         </motion.div>
       )}
     </div>
+    </>
   );
 };
