@@ -3,10 +3,21 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 
 // 파란색 커서와 말풍선을 함께 표시하는 컴포넌트
-const BlueCursorWithTooltip = () => (
+const BlueCursorWithTooltip = ({ 
+  onTooltipClick, 
+  showBox,
+  showImages
+}: { 
+  onTooltipClick: (e: React.MouseEvent) => void;
+  showBox: boolean;
+  showImages: boolean;
+}) => (
   <div className="relative">
     {/* 말풍선 */}
-    <div className="absolute left-10 top-7">
+    <div 
+      className="absolute left-9 top-7 pointer-events-auto cursor-pointer"
+      onClick={onTooltipClick}
+    >
       <svg width="278" height="44" viewBox="0 0 278 44" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g filter="url(#filter0_d_0_1)">
           <rect x="4" width="270" height="36" rx="11" fill="#2C2C2C"/>
@@ -33,32 +44,117 @@ const BlueCursorWithTooltip = () => (
         </defs>
       </svg>
     </div>
+
+    {/* 확장된 박스 */}
+    {showBox && (
+      <motion.div
+        className="absolute left-[-6px] top-[84px] pointer-events-auto"
+        initial={{ opacity: 0, scale: 0.95, y: -10 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.95, y: -10 }}
+        transition={{ duration: 0.2 }}
+      >
+        <style jsx>{`
+          .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+          }
+        `}</style>
+        <div 
+          className={`hide-scrollbar rounded-xl flex items-center gap-2 overflow-x-auto overflow-y-hidden px-4 ${!showImages ? 'justify-center' : 'justify-start'}`}
+          style={{
+            width: '360px',
+            height: '140px',
+            backgroundColor: '#2C2C2C',
+            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.25)',
+            scrollbarWidth: 'none', // Firefox
+            msOverflowStyle: 'none', // IE/Edge
+          }}
+        >
+          {!showImages ? (
+            /* 3개의 로딩 스피너 */
+            [1, 2, 3].map((index) => (
+              <motion.div
+                key={index}
+                className="w-3 h-3 rounded-full bg-white"
+                animate={{
+                  scale: [1, 1.3, 1],
+                  opacity: [0.5, 1, 0.5]
+                }}
+                transition={{
+                  duration: 1,
+                  repeat: Infinity,
+                  delay: index * 0.2
+                }}
+              />
+            ))
+          ) : (
+            /* 4개의 이미지 */
+            <>
+              <motion.img
+                src="/images/button1.png"
+                alt="Option 1"
+                className="h-12 w-auto object-contain cursor-pointer flex-shrink-0"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3 }}
+              />
+              <motion.img
+                src="/images/button2.png"
+                alt="Option 2"
+                className="h-12 w-auto object-contain cursor-pointer flex-shrink-0"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3, delay: 0.1 }}
+              />
+              <motion.img
+                src="/images/button3.png"
+                alt="Option 3"
+                className="h-12 w-auto object-contain cursor-pointer flex-shrink-0"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3, delay: 0.2 }}
+              />
+              <motion.img
+                src="/images/button4.png"
+                alt="Option 4"
+                className="h-12 w-auto object-contain cursor-pointer flex-shrink-0"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3, delay: 0.3 }}
+              />
+            </>
+          )}
+        </div>
+      </motion.div>
+    )}
     
-    {/* 파란색 커서 */}
-    <svg
-      width="36"
-      height="39"
-      viewBox="0 0 397 434"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className="text-sky-400"
-    >
-      <g filter="url(#filter0_d_blue)">
-        <path d="M40.7003 32.7814C38.9441 24.3881 47.9293 17.86 55.3691 22.1239L351.836 192.032C359.379 196.356 358.126 207.597 349.816 210.154L205.925 254.417C203.697 255.102 201.78 256.549 200.511 258.504L128.496 369.439C123.666 376.879 112.249 374.745 110.433 366.063L40.7003 32.7814Z" fill="#38bdf8"/>
-        <path d="M346.894 200.655L203.003 244.918C198.547 246.288 194.714 249.183 192.175 253.093L120.16 364.027L50.4271 30.7463L346.894 200.655Z" stroke="white" strokeWidth="19.8759"/>
-      </g>
-      <defs>
-        <filter id="filter0_d_blue" x="0.725891" y="0.905533" width="395.86" height="432.694" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
-          <feFlood floodOpacity="0" result="BackgroundImageFix"/>
-          <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-          <feOffset dy="19.8759"/>
-          <feGaussianBlur stdDeviation="19.8759"/>
-          <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.28 0"/>
-          <feBlend mode="normal" in="BackgroundImageFix" result="effect1_dropShadow_2_20"/>
-          <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_2_20" result="shape"/>
-        </filter>
-      </defs>
-    </svg>
+    {/* 파란색 커서 - showBox가 false일 때만 표시 */}
+    {!showBox && (
+      <svg
+        width="36"
+        height="39"
+        viewBox="0 0 397 434"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="text-sky-400"
+      >
+        <g filter="url(#filter0_d_blue)">
+          <path d="M40.7003 32.7814C38.9441 24.3881 47.9293 17.86 55.3691 22.1239L351.836 192.032C359.379 196.356 358.126 207.597 349.816 210.154L205.925 254.417C203.697 255.102 201.78 256.549 200.511 258.504L128.496 369.439C123.666 376.879 112.249 374.745 110.433 366.063L40.7003 32.7814Z" fill="#38bdf8"/>
+          <path d="M346.894 200.655L203.003 244.918C198.547 246.288 194.714 249.183 192.175 253.093L120.16 364.027L50.4271 30.7463L346.894 200.655Z" stroke="white" strokeWidth="19.8759"/>
+        </g>
+        <defs>
+          <filter id="filter0_d_blue" x="0.725891" y="0.905533" width="395.86" height="432.694" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+            <feFlood floodOpacity="0" result="BackgroundImageFix"/>
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+            <feOffset dy="19.8759"/>
+            <feGaussianBlur stdDeviation="19.8759"/>
+            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.28 0"/>
+            <feBlend mode="normal" in="BackgroundImageFix" result="effect1_dropShadow_2_20"/>
+            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_2_20" result="shape"/>
+          </filter>
+        </defs>
+      </svg>
+    )}
   </div>
 );
 
@@ -102,11 +198,15 @@ const ArrowIcon = () => (
 
 export const MoodHeroDemo = () => {
   const [clickedCursor, setClickedCursor] = useState<{ id: number; x: number; y: number } | null>(null);
+  const [showBox, setShowBox] = useState(false);
+  const [showImages, setShowImages] = useState(false);
 
   const handleClick = (e: React.MouseEvent) => {
     // 커서가 이미 있으면 제거
     if (clickedCursor) {
       setClickedCursor(null);
+      setShowBox(false); // 커서 제거 시 박스도 제거
+      setShowImages(false); // 이미지도 초기화
       return;
     }
     
@@ -122,6 +222,25 @@ export const MoodHeroDemo = () => {
     };
     
     setClickedCursor(newCursor);
+  };
+
+  const handleTooltipClick = (e: React.MouseEvent) => {
+    e.stopPropagation(); // 배경 클릭 이벤트 전파 방지
+    
+    if (showBox) {
+      // 박스가 켜져있으면 끄기
+      setShowBox(false);
+      setShowImages(false);
+    } else {
+      // 박스를 켜고
+      setShowBox(true);
+      setShowImages(false);
+      
+      // 2초 후에 이미지 표시
+      setTimeout(() => {
+        setShowImages(true);
+      }, 2000);
+    }
   };
   return (
     <div className="relative min-h-screen overflow-hidden" onClick={handleClick}>
@@ -341,7 +460,7 @@ export const MoodHeroDemo = () => {
             duration: 0.3 
           }}
         >
-          <BlueCursorWithTooltip />
+          <BlueCursorWithTooltip onTooltipClick={handleTooltipClick} showBox={showBox} showImages={showImages} />
         </motion.div>
       )}
     </div>
