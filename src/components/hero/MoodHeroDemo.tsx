@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
+import { LiquidButton } from "@/components/ui/liquid-glass-button";
 
 // GroundAI 로고 아이콘 (네잎클로버 스타일)
 const GroundAIIcon = () => (
@@ -132,21 +133,15 @@ export const MoodHeroDemo = () => {
            </motion.h2>
 
           {/* CTA 버튼 */}
-          <motion.button 
-            className="bg-white text-black rounded-2xl font-medium border-0"
-            style={{ 
-              fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif',
-              fontWeight: '500',
-              padding: '11.2px 22.4px',
-              fontSize: '16px',
-              boxShadow: 'none'
-            }}
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
           >
-            Get in touch
-          </motion.button>
+            <LiquidButton className="text-white border-white">
+              Get in touch
+            </LiquidButton>
+          </motion.div>
         </div>
       </div>
 
