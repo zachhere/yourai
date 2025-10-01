@@ -144,7 +144,7 @@ export const MoodHeroDemo = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
           >
-            Start free decoration
+            Start free exploration
           </motion.button>
         </div>
       </div>

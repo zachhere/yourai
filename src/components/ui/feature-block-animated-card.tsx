@@ -1,7 +1,7 @@
 "use client"
 
 import { animate, motion } from "framer-motion"
-import React, { useEffect } from "react"
+import React, { useEffect, useMemo } from "react"
 import { cn } from "../../lib/utils"
 
 export interface AnimatedCardProps {
@@ -94,30 +94,38 @@ const AnimatedSparkles = () => (
 )
 
 const Sparkles = () => {
-  const randomMove = () => Math.random() * 2 - 1
-  const randomOpacity = () => Math.random()
-  const random = () => Math.random()
+  // Generate random values once and memoize them to avoid hydration mismatch
+  const sparkles = useMemo(() => {
+    return [...Array(12)].map(() => ({
+      initialTop: Math.random() * 100,
+      initialLeft: Math.random() * 100,
+      moveX: Math.random() * 2 - 1,
+      moveY: Math.random() * 2 - 1,
+      targetOpacity: Math.random(),
+      duration: Math.random() * 2 + 4,
+    }))
+  }, [])
 
   return (
     <div className="absolute inset-0">
-      {[...Array(12)].map((_, i) => (
+      {sparkles.map((sparkle, i) => (
         <motion.span
           key={`star-${i}`}
           animate={{
-            top: `calc(${random() * 100}% + ${randomMove()}px)`,
-            left: `calc(${random() * 100}% + ${randomMove()}px)`,
-            opacity: randomOpacity(),
+            top: `calc(${sparkle.initialTop}% + ${sparkle.moveY}px)`,
+            left: `calc(${sparkle.initialLeft}% + ${sparkle.moveX}px)`,
+            opacity: sparkle.targetOpacity,
             scale: [1, 1.2, 0],
           }}
           transition={{
-            duration: random() * 2 + 4,
+            duration: sparkle.duration,
             repeat: Infinity,
             ease: "linear",
           }}
           style={{
             position: "absolute",
-            top: `${random() * 100}%`,
-            left: `${random() * 100}%`,
+            top: `${sparkle.initialTop}%`,
+            left: `${sparkle.initialLeft}%`,
             width: `2px`,
             height: `2px`,
             borderRadius: "50%",

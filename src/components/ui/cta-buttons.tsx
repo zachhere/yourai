@@ -4,7 +4,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { cn } from "../../lib/utils";
 
-type VariantId = 1 | 2 | 3 | 4;
+type VariantId = 1 | 2 | 3 | 4 | 5;
 
 export type CTAButtonVariantProps = {
   variant: VariantId;
@@ -44,12 +44,14 @@ function getVariantClasses(variant: VariantId) {
       return "text-white bg-gradient-to-r from-sky-500 to-cyan-400 hover:from-sky-400 hover:to-cyan-300";
     case 4:
       return "text-white bg-black/40 backdrop-blur-sm border border-white/20 hover:bg-black/50";
+    case 5:
+      return "text-white bg-orange-500 hover:bg-orange-600";
     default:
       return "bg-white text-black";
   }
 }
 
-export function CTAButtonVariant({ variant, label = "Start free decoration", size = "thumb", className, disableHoverBorder, onMouseEnter, onMouseLeave, onClick, }: CTAButtonVariantProps) {
+export function CTAButtonVariant({ variant, label = "Start free exploration", size = "thumb", className, disableHoverBorder, onMouseEnter, onMouseLeave, onClick, }: CTAButtonVariantProps) {
   const sizing = baseSizing[size];
 
   return (

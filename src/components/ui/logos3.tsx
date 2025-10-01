@@ -80,7 +80,7 @@ const Logos3 = ({
 }: Logos3Props) => {
   return (
     <section className="py-16">
-      <div className="container flex flex-col items-center text-center">
+      <div className="container mx-auto flex flex-col items-center text-center">
         <h1 className="my-6 text-2xl font-normal text-pretty lg:text-4xl">
           <span style={{ fontFamily: 'Playfair Display Italic, Georgia, Times New Roman, serif', fontStyle: 'italic' }}>
             Trusted by

@@ -2,6 +2,8 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { CTAButtonVariant } from "../ui/cta-buttons";
+import { FlowButton } from "@/components/ui/flow-button";
+import { Button } from "@/components/ui/stateful-button";
 
 // 일반 채팅창 컴포넌트 (작은 박스)
 const GeneralChatCursor = ({ 
@@ -283,42 +285,31 @@ const BlueCursorWithTooltip = ({
           ) : ctaButtonClicked && !navbarClicked ? (
             /* CTA 버튼 클릭 시 - 실제 버튼 컴포넌트들 */
             <>
-              <CTAButtonVariant
-                variant={1}
-                size="thumb"
+              <div
                 className="flex-shrink-0"
-                disableHoverBorder
                 onMouseEnter={() => onButtonHover(1)}
                 onMouseLeave={() => onButtonHover(null)}
                 onClick={(e) => {
                   e.stopPropagation();
                   onButtonClick(1);
                 }}
-              />
-              <CTAButtonVariant
-                variant={2}
-                size="thumb"
+              >
+                <FlowButton text="Start free exploration" />
+              </div>
+              
+              <div
                 className="flex-shrink-0"
-                disableHoverBorder
-                onMouseEnter={() => onButtonHover(2)}
-                onMouseLeave={() => onButtonHover(null)}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  onButtonClick(2);
-                }}
-              />
-              <CTAButtonVariant
-                variant={3}
-                size="thumb"
-                className="flex-shrink-0"
-                disableHoverBorder
                 onMouseEnter={() => onButtonHover(3)}
                 onMouseLeave={() => onButtonHover(null)}
                 onClick={(e) => {
                   e.stopPropagation();
                   onButtonClick(3);
                 }}
-              />
+              >
+                <Button onClick={() => new Promise((resolve) => setTimeout(resolve, 4000))}>
+                  Start free exploration
+                </Button>
+              </div>
               <CTAButtonVariant
                 variant={4}
                 size="thumb"
@@ -329,6 +320,18 @@ const BlueCursorWithTooltip = ({
                 onClick={(e) => {
                   e.stopPropagation();
                   onButtonClick(4);
+                }}
+              />
+              <CTAButtonVariant
+                variant={5}
+                size="thumb"
+                className="flex-shrink-0"
+                disableHoverBorder
+                onMouseEnter={() => onButtonHover(5)}
+                onMouseLeave={() => onButtonHover(null)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onButtonClick(5);
                 }}
               />
             </>
@@ -752,18 +755,29 @@ export const MoodHeroDemo = () => {
           {selectedButton !== null ? (
             /* 선택된 버튼 - 실제 컴포넌트 표시 */
             <div className="flex items-center justify-center">
-              <CTAButtonVariant variant={selectedButton as any} size="display" />
+              {selectedButton === 2 ? (
+                <CTAButtonVariant variant={2} size="display" />
+              ) : selectedButton === 3 ? (
+                <Button onClick={() => new Promise((resolve) => setTimeout(resolve, 4000))}>Start free exploration</Button>
+              ) : selectedButton === 1 ? (
+                <FlowButton text="Start free exploration" />
+              ) : (
+                <CTAButtonVariant variant={(selectedButton === 3 ? 2 : selectedButton) as any} size="display" />
+              )}
             </div>
           ) : ctaButtonClicked && !navbarClicked && hoveredButton !== null ? (
-            /* 미리보기 - 실제 컴포넌트 표시 */
-            <motion.div
-              className="flex items-center justify-center"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-            >
-              <CTAButtonVariant variant={hoveredButton as any} size="display" />
-            </motion.div>
+            /* 미리보기 - 실제 컴포넌트 표시 (애니메이션 제거) */
+            <div className="flex items-center justify-center">
+              {hoveredButton === 2 ? (
+                <CTAButtonVariant variant={2} size="display" />
+              ) : hoveredButton === 3 ? (
+                <Button hoverActive onClick={() => new Promise((resolve) => setTimeout(resolve, 4000))}>Start free exploration</Button>
+              ) : hoveredButton === 1 ? (
+                <FlowButton hoverActive text="Start free exploration" />
+              ) : (
+                <CTAButtonVariant variant={(hoveredButton === 3 ? 2 : hoveredButton) as any} size="display" />
+              )}
+            </div>
           ) : (
           <motion.button
             className="bg-white text-black rounded-2xl font-medium cursor-default hover:shadow-[0_0_0_2px_#38bdf8] h-[50px]"
@@ -799,7 +813,7 @@ export const MoodHeroDemo = () => {
                 }
               }}
           >
-            Start free decoration
+            Start free exploration
           </motion.button>
           )}
         </div>
