@@ -73,8 +73,8 @@ export const MoodHeroDemo = () => {
          <div className="max-w-[720px] mx-auto text-center">
           
            {/* 1줄: Meet YourAI */}
-           <motion.h1 
-             className="text-[60px] font-light text-white leading-[1.05]"
+           <motion.h1
+             className="text-[60px] font-light text-white leading-[1.05] border-2 border-transparent hover:border-sky-400 cursor-default"
              style={{ 
                fontFamily: 'Arial Rounded MT Regular, Arial, sans-serif',
                fontWeight: '100',
@@ -98,9 +98,9 @@ export const MoodHeroDemo = () => {
              animate={{ opacity: 1, y: 0 }}
              transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
            >
-             <span 
-               className="font-normal"
-               style={{ 
+             <span
+               className="font-normal border-2 border-transparent hover:border-sky-400 cursor-default"
+               style={{
                  fontFamily: 'Playfair Display Italic, Georgia, Times New Roman, serif',
                  fontWeight: '400',
                  letterSpacing: '-0.05em'
@@ -108,9 +108,9 @@ export const MoodHeroDemo = () => {
              >
                Reimagine work
              </span>
-             <span 
-               className="font-normal"
-               style={{ 
+             <span
+               className="font-normal border-2 border-transparent hover:border-sky-400 cursor-default"
+               style={{
                  fontFamily: 'Arial Rounded MT Regular, Arial, sans-serif',
                  fontWeight: '100',
                  letterSpacing: '-0.05em'
@@ -119,9 +119,9 @@ export const MoodHeroDemo = () => {
                {" "}with
              </span>
              <br />
-             <span 
-               className="font-normal"
-               style={{ 
+             <span
+               className="font-normal border-2 border-transparent hover:border-sky-400 cursor-default"
+               style={{
                  fontFamily: 'Arial Rounded MT Regular, Arial, sans-serif',
                  fontWeight: '100',
                  letterSpacing: '-0.05em'
@@ -132,8 +132,8 @@ export const MoodHeroDemo = () => {
            </motion.h2>
 
           {/* CTA 버튼 */}
-          <motion.button 
-            className="bg-white text-black rounded-2xl font-medium cursor-default"
+          <motion.button
+            className="bg-white text-black rounded-2xl font-medium cursor-default hover:shadow-[0_0_0_2px_#38bdf8]"
             style={{ 
               fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif',
               fontWeight: '500',
@@ -156,8 +156,8 @@ export const MoodHeroDemo = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.7 }}
         >
-          <p 
-            className="text-white text-lg"
+          <p
+            className="text-white text-lg border-2 border-transparent hover:border-sky-400 cursor-default"
             style={{ 
               fontFamily: 'Arial Rounded MT Regular, Arial, sans-serif',
               fontWeight: '100',
@@ -180,7 +180,7 @@ export const MoodHeroDemo = () => {
        >
          <div className="space-y-2">
              <motion.button 
-               className="w-full bg-transparent border-2 border-white/30 text-white px-6 rounded-2xl text-left hover:bg-white/10 transition-all duration-300 flex items-center group cursor-default"
+               className="w-full bg-transparent border-2 border-white/30 text-white px-6 rounded-2xl text-left hover:bg-white/10 hover:border-sky-400 transition-all duration-300 flex items-center group cursor-default"
                style={{ 
                  fontFamily: 'Arial Rounded MT Regular, Arial, sans-serif',
                  fontWeight: '100',
@@ -194,7 +194,7 @@ export const MoodHeroDemo = () => {
 
            <div className="flex items-center gap-2">
               <motion.button 
-                className="flex-1 bg-transparent border-2 border-white/30 text-white px-6 rounded-2xl text-left hover:bg-white/10 transition-all duration-300 flex items-center group cursor-default"
+                className="flex-1 bg-transparent border-2 border-white/30 text-white px-6 rounded-2xl text-left hover:bg-white/10 hover:border-sky-400 transition-all duration-300 flex items-center group cursor-default"
                 style={{ 
                   fontFamily: 'Arial Rounded MT Regular, Arial, sans-serif',
                   fontWeight: '100',
@@ -207,7 +207,7 @@ export const MoodHeroDemo = () => {
               </motion.button>
              
              <motion.button 
-               className="bg-transparent border-2 border-white/30 text-white rounded-2xl hover:bg-white/10 transition-all duration-300 flex items-center justify-center cursor-default"
+               className="bg-transparent border-2 border-white/30 text-white rounded-2xl hover:bg-white/10 hover:border-sky-400 transition-all duration-300 flex items-center justify-center cursor-default"
                style={{ 
                  width: '50px',
                  height: '50px'
