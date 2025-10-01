@@ -61,12 +61,13 @@ const GeneralChatCursor = ({
               }}
               className="text-white text-xs hover:opacity-80 transition-opacity rounded flex items-center justify-center gap-0.5"
               style={{ 
-                width: '70px',
+                minWidth: '50px',
                 height: '20px',
                 fontFamily: 'Arial, sans-serif',
                 border: '0.5px solid white',
                 lineHeight: '1',
-                cursor: 'pointer'
+                cursor: 'pointer',
+                padding: '0 8px'
               }}
             >
               <span style={{ marginTop: '2px' }}>{selectedStyle}</span>
