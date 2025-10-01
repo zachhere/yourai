@@ -133,7 +133,7 @@ export const MoodHeroDemo = () => {
 
           {/* CTA 버튼 */}
           <motion.button 
-            className="bg-white text-black rounded-2xl font-medium"
+            className="bg-white text-black rounded-2xl font-medium cursor-default"
             style={{ 
               fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif',
               fontWeight: '500',
@@ -180,7 +180,7 @@ export const MoodHeroDemo = () => {
        >
          <div className="space-y-2">
              <motion.button 
-               className="w-full bg-transparent border-2 border-white/30 text-white px-6 rounded-2xl text-left hover:bg-white/10 transition-all duration-300 flex items-center group"
+               className="w-full bg-transparent border-2 border-white/30 text-white px-6 rounded-2xl text-left hover:bg-white/10 transition-all duration-300 flex items-center group cursor-default"
                style={{ 
                  fontFamily: 'Arial Rounded MT Regular, Arial, sans-serif',
                  fontWeight: '100',
@@ -194,7 +194,7 @@ export const MoodHeroDemo = () => {
 
            <div className="flex items-center gap-2">
               <motion.button 
-                className="flex-1 bg-transparent border-2 border-white/30 text-white px-6 rounded-2xl text-left hover:bg-white/10 transition-all duration-300 flex items-center group"
+                className="flex-1 bg-transparent border-2 border-white/30 text-white px-6 rounded-2xl text-left hover:bg-white/10 transition-all duration-300 flex items-center group cursor-default"
                 style={{ 
                   fontFamily: 'Arial Rounded MT Regular, Arial, sans-serif',
                   fontWeight: '100',
@@ -207,7 +207,7 @@ export const MoodHeroDemo = () => {
               </motion.button>
              
              <motion.button 
-               className="bg-transparent border-2 border-white/30 text-white rounded-2xl hover:bg-white/10 transition-all duration-300 flex items-center justify-center"
+               className="bg-transparent border-2 border-white/30 text-white rounded-2xl hover:bg-white/10 transition-all duration-300 flex items-center justify-center cursor-default"
                style={{ 
                  width: '50px',
                  height: '50px'

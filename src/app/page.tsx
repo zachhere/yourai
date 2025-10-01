@@ -319,7 +319,7 @@ export default function MixTemplate() {
                 Company
               </a>
               <button 
-                className="bg-white text-black px-4 py-2 rounded-full text-sm font-medium hover:bg-white/90 transition-colors"
+                className="bg-white text-black px-4 py-2 rounded-full text-sm font-medium hover:bg-white/90 transition-colors cursor-default"
                 style={{ 
                   fontFamily: 'Arial Rounded MT Regular, Arial, sans-serif',
                   fontWeight: '550',

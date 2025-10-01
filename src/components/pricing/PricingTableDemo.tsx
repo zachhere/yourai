@@ -71,7 +71,7 @@ export function PricingTable({
               type="button"
               onClick={() => setIsYearly(false)}
               className={cn(
-                "px-3 py-1 rounded-md transition-colors",
+                "px-3 py-1 rounded-md transition-colors cursor-default",
                 !isYearly ? "bg-zinc-100 dark:bg-zinc-800" : "text-zinc-500",
               )}
               style={{ fontFamily: 'Arial Rounded MT Regular, Arial, sans-serif' }}
@@ -82,7 +82,7 @@ export function PricingTable({
               type="button"
               onClick={() => setIsYearly(true)}
               className={cn(
-                "px-3 py-1 rounded-md transition-colors",
+                "px-3 py-1 rounded-md transition-colors cursor-default",
                 isYearly ? "bg-zinc-100 dark:bg-zinc-800" : "text-zinc-500",
               )}
               style={{ fontFamily: 'Arial Rounded MT Regular, Arial, sans-serif' }}
@@ -99,7 +99,7 @@ export function PricingTable({
               type="button"
               onClick={() => handlePlanSelect(plan.level)}
               className={cn(
-                "flex-1 p-4 rounded-xl text-left transition-all",
+                "flex-1 p-4 rounded-xl text-left transition-all cursor-default",
                 "border border-zinc-200 dark:border-zinc-800",
                 selectedPlan === plan.level &&
                   "ring-2 ring-amber-600 dark:ring-amber-500",
