@@ -145,7 +145,7 @@ export const MoodHeroDemo = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
           >
-            Start free decoration
+            Get in touch
           </motion.button>
         </div>
       </div>
@@ -165,10 +165,10 @@ export const MoodHeroDemo = () => {
               lineHeight: '1.2'
             }}
           >
-            It helps you explore, create, and refine ideas
-            through natural interactions.
-            From drafting concepts and options to shaping
-            workflows and outputs, it adapts to your style.
+            It helps you analyze, design, and optimize strategies
+            through collaborative sessions.
+            From mapping opportunities and scenarios to shaping
+            processes and results, it adapts to your goals.
           </p>
         </motion.div>
 

@@ -2,6 +2,7 @@
 
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/faq-accordion'
 import Link from 'next/link'
+import { motion } from 'framer-motion'
 
 export default function FAQs() {
     const faqItems = [
@@ -35,8 +36,20 @@ export default function FAQs() {
     return (
         <section className="py-16 md:py-24">
             <div className="mx-auto max-w-5xl px-6">
-                <div className="grid gap-8 md:grid-cols-5 md:gap-12">
-                    <div className="md:col-span-2">
+                <motion.div 
+                    className="grid gap-8 md:grid-cols-5 md:gap-12"
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.3 }}
+                    transition={{ duration: 0.6, ease: "easeOut" }}
+                >
+                    <motion.div 
+                        className="md:col-span-2"
+                        initial={{ opacity: 0, x: -50 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true, amount: 0.3 }}
+                        transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+                    >
                         <h2 
                             className="text-foreground text-4xl font-semibold"
                             style={{ 
@@ -60,26 +73,38 @@ export default function FAQs() {
                                 fontWeight: '100'
                             }}> answered</span>
                         </p>
-                    </div>
+                    </motion.div>
 
-                    <div className="md:col-span-3">
+                    <motion.div 
+                        className="md:col-span-3"
+                        initial={{ opacity: 0, x: 50 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true, amount: 0.3 }}
+                        transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
+                    >
                         <Accordion
                             type="single"
                             collapsible>
-                            {faqItems.map((item) => (
-                                <AccordionItem
+                            {faqItems.map((item, index) => (
+                                <motion.div
                                     key={item.id}
-                                    value={item.id}>
-                                    <AccordionTrigger className="cursor-pointer text-base hover:no-underline">{item.question}</AccordionTrigger>
-                                    <AccordionContent>
-                                        <p className="text-base">{item.answer}</p>
-                                    </AccordionContent>
-                                </AccordionItem>
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true, amount: 0.3 }}
+                                    transition={{ duration: 0.4, ease: "easeOut", delay: 0.6 + (index * 0.1) }}
+                                >
+                                    <AccordionItem value={item.id}>
+                                        <AccordionTrigger className="cursor-pointer text-base hover:no-underline">{item.question}</AccordionTrigger>
+                                        <AccordionContent>
+                                            <p className="text-base">{item.answer}</p>
+                                        </AccordionContent>
+                                    </AccordionItem>
+                                </motion.div>
                             ))}
                         </Accordion>
-                    </div>
+                    </motion.div>
 
-                </div>
+                </motion.div>
             </div>
         </section>
     )

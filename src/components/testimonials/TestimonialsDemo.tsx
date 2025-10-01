@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader } from '../ui/card'
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/testimonials-avatar'
 import { motion } from 'framer-motion'
+import { TextAnimate } from '../ui/text-animate'
 
 export default function TestimonialsDemo() {
     return (
@@ -34,6 +35,12 @@ export default function TestimonialsDemo() {
                         font-weight: 100 !important;
                         font-style: normal !important;
                     }
+                    .testimonials-section .playful-italic {
+                        font-family: 'Playfair Display Italic', Georgia, Times New Roman, serif !important;
+                        font-weight: 400 !important;
+                        font-style: italic !important;
+                        text-shadow: 2px 2px 4px rgba(0,0,0,0.1) !important;
+                    }
                 `
             }} />
             <div className="max-w-7xl mx-auto">
@@ -61,13 +68,8 @@ export default function TestimonialsDemo() {
                                 fontWeight: 100
                             }}>What our </span>
                             <span 
-                                className="playfair-italic"
-                                style={{
-                                    fontFamily: 'Playfair Display Italic, Georgia, Times New Roman, serif !important',
-                                    fontWeight: 400,
-                                    fontStyle: 'italic !important'
-                                }}
-                            >clients </span>
+                                className="playful-italic"
+                            >clients&nbsp;</span>
                             <span style={{
                                 fontFamily: 'Arial Rounded MT Regular, Arial, sans-serif',
                                 fontWeight: 100
@@ -95,7 +97,11 @@ export default function TestimonialsDemo() {
                         </CardHeader>
                         <CardContent>
                             <blockquote className="grid h-full grid-rows-[1fr_auto] gap-6">
-                                <p className="text-xl font-medium leading-relaxed" style={{ fontFamily: 'Arial Rounded MT Regular, Arial, sans-serif', fontWeight: '100' }}>YourAI has transformed the way we run business operations. Their tailored AI strategies and solutions have significantly accelerated our decision-making. The ability to adapt each aspect to our needs allows us to create lasting impact. YourAI is a game-changer for modern enterprises.</p>
+                                <p className="text-xl font-medium leading-relaxed" style={{ fontFamily: 'Arial Rounded MT Regular, Arial, sans-serif', fontWeight: '100' }}>
+                                    <TextAnimate animation="blurInUp" by="word" whileInView={true} once={true}>
+                                        YourAI has transformed the way we run business operations. Their tailored AI strategies and solutions have significantly accelerated our decision-making. The ability to adapt each aspect to our needs allows us to create lasting impact. YourAI is a game-changer for modern enterprises.
+                                    </TextAnimate>
+                                </p>
 
                                 <div className="grid grid-cols-[auto_1fr] items-center gap-3">
                                     <Avatar className="size-12">

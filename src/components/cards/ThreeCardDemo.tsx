@@ -65,13 +65,7 @@ const ThreeCardDemo = () => {
         </div>
 
         {/* Three Cards Container */}
-        <motion.div 
-          className="grid grid-cols-1 md:grid-cols-3 gap-8"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
-        >
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Card 1 - Left Panel with TiltedScroll */}
           <motion.div
             className="relative rounded-2xl overflow-hidden flex items-center justify-center"
@@ -82,8 +76,11 @@ const ThreeCardDemo = () => {
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat'
             }}
+            initial={{ opacity: 0, x: -100 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
             whileHover={{ scale: 1.02, y: -5 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
           >
             {/* Light Overlay for better text visibility */}
             <div 
@@ -103,8 +100,11 @@ const ThreeCardDemo = () => {
           {/* Card 2 - Middle Panel with AnimatedCardDemo */}
           <motion.div
             className="relative"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
             whileHover={{ scale: 1.02, y: -5 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
           >
             <AnimatedCardDemo />
           </motion.div>
@@ -116,8 +116,11 @@ const ThreeCardDemo = () => {
               height: '400px',
               backgroundColor: '#8B7355'
             }}
+            initial={{ opacity: 0, x: 100 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.7 }}
             whileHover={{ scale: 1.02, y: -5 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
           >
             <div className="p-6 h-full flex flex-col justify-between">
               {/* Top Content */}
@@ -191,7 +194,7 @@ const ThreeCardDemo = () => {
               </div>
             </div>
           </motion.div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

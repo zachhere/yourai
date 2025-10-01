@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { motion } from 'framer-motion'
 
 const members = [
     {
@@ -25,8 +26,20 @@ export default function TeamSection() {
     return (
         <section className="bg-white py-16 md:py-32 dark:bg-transparent">
             <div className="mx-auto max-w-5xl px-6">
-                <div className="mt-12 gap-4 sm:grid sm:grid-cols-2 md:mt-24">
-                    <div className="sm:w-2/5">
+                <motion.div 
+                    className="mt-12 gap-4 sm:grid sm:grid-cols-2 md:mt-24"
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.3 }}
+                    transition={{ duration: 0.6, ease: "easeOut" }}
+                >
+                    <motion.div 
+                        className="sm:w-2/5"
+                        initial={{ opacity: 0, x: -50 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true, amount: 0.3 }}
+                        transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+                    >
                         <h2 
                             style={{
                                 fontSize: '56px',
@@ -46,8 +59,14 @@ export default function TeamSection() {
                                 fontStyle: 'italic'
                             }}>team</span>
                         </h2>
-                    </div>
-                    <div className="mt-6 sm:mt-0">
+                    </motion.div>
+                    <motion.div 
+                        className="mt-6 sm:mt-0"
+                        initial={{ opacity: 0, x: 50 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true, amount: 0.3 }}
+                        transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
+                    >
                         <p 
                             className="arial-rounded-text"
                             style={{
@@ -59,12 +78,25 @@ export default function TeamSection() {
                                 textTransform: 'none !important'
                             }}
                         >During each engagement, we conduct regular check-ins with the client, because only they can determine whether the AI solutions truly align with their goals and ways of working.</p>
-                    </div>
-                </div>
-                <div className="mt-12 md:mt-24">
+                    </motion.div>
+                </motion.div>
+                <motion.div 
+                    className="mt-12 md:mt-24"
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.3 }}
+                    transition={{ duration: 0.6, ease: "easeOut", delay: 0.6 }}
+                >
                     <div className="grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
                         {members.map((member, index) => (
-                            <div key={index} className="group overflow-hidden">
+                            <motion.div 
+                                key={index} 
+                                className="group overflow-hidden"
+                                initial={{ opacity: 0, y: 50 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, amount: 0.3 }}
+                                transition={{ duration: 0.6, ease: "easeOut", delay: 0.8 }}
+                            >
                                 <img className="h-96 w-full rounded-md object-cover object-top grayscale transition-all duration-500 hover:grayscale-0 group-hover:h-[22.5rem] group-hover:rounded-xl" src={member.avatar} alt="team member" width="826" height="1239" />
                                 <div className="px-2 pt-2 sm:pb-0 sm:pt-4">
                                     <div className="flex justify-between">
@@ -79,10 +111,10 @@ export default function TeamSection() {
                                         </Link>
                                     </div>
                                 </div>
-                            </div>
+                            </motion.div>
                         ))}
                     </div>
-                </div>
+                </motion.div>
             </div>
         </section>
     )

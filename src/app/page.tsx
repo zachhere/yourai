@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Lenis from 'lenis';
 import { MoodHeroDemo } from '../components/hero/MoodHeroDemo';
 import { GradientHeading } from '../components/ui/gradient-heading';
@@ -10,8 +10,9 @@ import ThreeCardDemo from '../components/cards/ThreeCardDemo';
 import TestimonialsDemo from '../components/testimonials/TestimonialsDemo';
 import TeamDemo from '../components/team/TeamDemo';
 import FAQsComponentsDemo from '../components/faq/FAQsComponentsDemo';
-import { StackedCircularFooterDemo } from '../components/footer/StackCircularFooterMiddleDemo';
+import { GroundAIFooterDemo } from '../components/footer/GroundAIFooterDemo';
 import OrbFeatureDemo from '../components/features/OrbFeatureDemo';
+import PearlNavbarDemo from '../components/navbar/PearlNavbarDemo';
 import { motion } from 'framer-motion';
 
 // 로고 아이콘들
@@ -183,6 +184,9 @@ const allLogos = [
 ];
 
 export default function MixTemplate() {
+  const [isNavbarVisible, setIsNavbarVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
   useEffect(() => {
     // MixTemplate 전용 폰트 스타일 적용 (h1, h2 제외)
     const style = document.createElement('style');
@@ -203,6 +207,36 @@ export default function MixTemplate() {
       document.head.removeChild(style);
     };
   }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      // 히어로 섹션의 높이를 대략적으로 계산 (뷰포트 높이의 80% 정도)
+      const heroSectionHeight = window.innerHeight * 0.8;
+      
+      // 히어로 섹션으로 돌아가면 navbar 표시
+      if (currentScrollY < heroSectionHeight) {
+        setIsNavbarVisible(true);
+      }
+      // 스크롤이 아래로 내려가면 navbar 숨김
+      else if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        setIsNavbarVisible(false);
+      } 
+      // 스크롤이 위로 올라가면 navbar 표시
+      else if (currentScrollY < lastScrollY) {
+        setIsNavbarVisible(true);
+      }
+      
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [lastScrollY]);
 
   useEffect(() => {
     // Lenis 스크롤 초기화 - 래퍼런스와 비슷한 감도로 설정
@@ -229,109 +263,8 @@ export default function MixTemplate() {
 
   return (
     <div className="min-h-screen mix-template-container">
-      {/* Custom Navbar */}
-      <nav className="fixed top-0 left-0 right-0 z-50 w-full px-6 py-4">
-        <div className="flex items-center justify-between">
-          {/* Left side - Logo and text */}
-          <div className="flex items-center space-x-3">
-            {/* YourAI Logo */}
-            <div className="w-8 h-8 flex items-center justify-center">
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="text-white"
-              >
-                <path
-                  d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z"
-                  fill="currentColor"
-                />
-                <circle
-                  cx="12"
-                  cy="12"
-                  r="3"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  fill="none"
-                />
-                <path
-                  d="M12 1V3M12 21V23M4.22 4.22L5.64 5.64M18.36 18.36L19.78 19.78M1 12H3M21 12H23M4.22 19.78L5.64 18.36M18.36 5.64L19.78 4.22"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                />
-              </svg>
-            </div>
-            <span 
-              className="text-white text-lg font-medium"
-              style={{ 
-                fontFamily: 'Arial Rounded MT Regular, Arial, sans-serif',
-                fontWeight: '100'
-              }}
-            >
-              YourAI
-            </span>
-          </div>
-
-          {/* Right side - All items in one container */}
-          <div className="bg-black/20 backdrop-blur-sm border border-white/10 rounded-full px-6 py-2">
-            <div className="flex items-center space-x-6">
-              <a 
-                href="#" 
-                className="text-white text-sm hover:text-white/80 transition-colors"
-                style={{ 
-                  fontFamily: 'Arial Rounded MT Regular, Arial, sans-serif',
-                  fontWeight: '100'
-                }}
-              >
-                Product
-              </a>
-              <a 
-                href="#" 
-                className="text-white text-sm hover:text-white/80 transition-colors"
-                style={{ 
-                  fontFamily: 'Arial Rounded MT Regular, Arial, sans-serif',
-                  fontWeight: '100'
-                }}
-              >
-                Platform
-              </a>
-              <a 
-                href="#" 
-                className="text-white text-sm hover:text-white/80 transition-colors"
-                style={{ 
-                  fontFamily: 'Arial Rounded MT Regular, Arial, sans-serif',
-                  fontWeight: '100'
-                }}
-              >
-                Customers
-              </a>
-              <a 
-                href="#" 
-                className="text-white text-sm hover:text-white/80 transition-colors"
-                style={{ 
-                  fontFamily: 'Arial Rounded MT Regular, Arial, sans-serif',
-                  fontWeight: '100'
-                }}
-              >
-                Company
-              </a>
-              <button 
-                className="bg-white text-black px-4 py-2 rounded-full text-sm font-medium hover:bg-white/90 transition-colors"
-                style={{ 
-                  fontFamily: 'Arial Rounded MT Regular, Arial, sans-serif',
-                  fontWeight: '550',
-                  color: 'black'
-                }}
-              >
-                Login
-              </button>
-            </div>
-          </div>
-        </div>
-      </nav>
+      {/* PearlNavbarDemo Component */}
+      <PearlNavbarDemo isVisible={isNavbarVisible} />
       
       {/* Mood Hero Section - GroundAI 스타일 */}
       <div>
@@ -453,14 +386,14 @@ export default function MixTemplate() {
         <div className="w-3/5 h-px bg-gray-300"></div>
       </motion.div>
       
-      {/* Footer 섹션 - OrbaiTemplate에서 가져옴 */}
+      {/* Footer 섹션 - GroundAI 스타일 */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
         viewport={{ once: true }}
       >
-        <StackedCircularFooterDemo />
+        <GroundAIFooterDemo />
       </motion.div>
     </div>
   );

@@ -25,19 +25,18 @@ const OrbProcessDemo = () => {
               }}
             >
               <span style={{
-                fontFamily: 'Playfair Display Italic, Georgia, Times New Roman, serif',
-                fontWeight: 400,
-                fontStyle: 'italic'
-              }}>Powerful</span>
+                fontFamily: 'Arial Rounded MT Regular, Arial, sans-serif',
+                fontWeight: 300
+              }}>Process </span>
               <span style={{
                 fontFamily: 'Arial Rounded MT Regular, Arial, sans-serif',
-                fontWeight: 100
-              }}> & </span>
+                fontWeight: 300
+              }}>that </span>
               <span style={{
                 fontFamily: 'Playfair Display Italic, Georgia, Times New Roman, serif',
                 fontWeight: 400,
                 fontStyle: 'italic'
-              }}>Flexible</span>
+              }}>delivers</span>
             </span>
           </motion.h2>
           
