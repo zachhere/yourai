@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { CTAButtonVariant } from "../ui/cta-buttons";
 
 // 일반 채팅창 컴포넌트 (작은 박스)
 const GeneralChatCursor = ({ 
@@ -280,16 +281,13 @@ const BlueCursorWithTooltip = ({
               />
             </>
           ) : ctaButtonClicked && !navbarClicked ? (
-            /* CTA 버튼 클릭 시 button 이미지들 */
+            /* CTA 버튼 클릭 시 - 실제 버튼 컴포넌트들 */
             <>
-              <motion.img
-                src="/images/button1.png"
-                alt="Option 1"
-                className="h-12 w-auto object-contain cursor-pointer flex-shrink-0"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1, transition: { duration: 0.3 } }}
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: "spring", stiffness: 500, damping: 30 }}
+              <CTAButtonVariant
+                variant={1}
+                size="thumb"
+                className="flex-shrink-0"
+                disableHoverBorder
                 onMouseEnter={() => onButtonHover(1)}
                 onMouseLeave={() => onButtonHover(null)}
                 onClick={(e) => {
@@ -297,14 +295,11 @@ const BlueCursorWithTooltip = ({
                   onButtonClick(1);
                 }}
               />
-              <motion.img
-                src="/images/button2.png"
-                alt="Option 2"
-                className="h-12 w-auto object-contain cursor-pointer flex-shrink-0"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1, transition: { duration: 0.3, delay: 0.1 } }}
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: "spring", stiffness: 500, damping: 30 }}
+              <CTAButtonVariant
+                variant={2}
+                size="thumb"
+                className="flex-shrink-0"
+                disableHoverBorder
                 onMouseEnter={() => onButtonHover(2)}
                 onMouseLeave={() => onButtonHover(null)}
                 onClick={(e) => {
@@ -312,14 +307,11 @@ const BlueCursorWithTooltip = ({
                   onButtonClick(2);
                 }}
               />
-              <motion.img
-                src="/images/button3.png"
-                alt="Option 3"
-                className="h-12 w-auto object-contain cursor-pointer flex-shrink-0"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1, transition: { duration: 0.3, delay: 0.2 } }}
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: "spring", stiffness: 500, damping: 30 }}
+              <CTAButtonVariant
+                variant={3}
+                size="thumb"
+                className="flex-shrink-0"
+                disableHoverBorder
                 onMouseEnter={() => onButtonHover(3)}
                 onMouseLeave={() => onButtonHover(null)}
                 onClick={(e) => {
@@ -327,14 +319,11 @@ const BlueCursorWithTooltip = ({
                   onButtonClick(3);
                 }}
               />
-              <motion.img
-                src="/images/button4.png"
-                alt="Option 4"
-                className="h-12 w-auto object-contain cursor-pointer flex-shrink-0"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1, transition: { duration: 0.3, delay: 0.3 } }}
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: "spring", stiffness: 500, damping: 30 }}
+              <CTAButtonVariant
+                variant={4}
+                size="thumb"
+                className="flex-shrink-0"
+                disableHoverBorder
                 onMouseEnter={() => onButtonHover(4)}
                 onMouseLeave={() => onButtonHover(null)}
                 onClick={(e) => {
@@ -761,37 +750,27 @@ export const MoodHeroDemo = () => {
 
           {/* CTA 버튼 또는 이미지 미리보기 */}
           {selectedButton !== null ? (
-            /* 선택된 버튼 이미지 - 영구 표시 */
+            /* 선택된 버튼 - 실제 컴포넌트 표시 */
             <div className="flex items-center justify-center">
-              <img
-                src={`/images/button${selectedButton}.png`}
-                alt={`Button ${selectedButton}`}
-                className="h-auto max-w-full object-contain"
-                style={{ maxHeight: '60px' }}
-              />
+              <CTAButtonVariant variant={selectedButton as any} size="display" />
             </div>
           ) : ctaButtonClicked && !navbarClicked && hoveredButton !== null ? (
-            /* 미리보기 */
+            /* 미리보기 - 실제 컴포넌트 표시 */
             <motion.div
               className="flex items-center justify-center"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5 }}
             >
-              <img
-                src={`/images/button${hoveredButton}.png`}
-                alt={`Button ${hoveredButton} Preview`}
-                className="h-auto max-w-full object-contain"
-                style={{ maxHeight: '60px' }}
-              />
+              <CTAButtonVariant variant={hoveredButton as any} size="display" />
             </motion.div>
           ) : (
           <motion.button
-            className="bg-white text-black rounded-2xl font-medium cursor-default hover:shadow-[0_0_0_2px_#38bdf8]"
+            className="bg-white text-black rounded-2xl font-medium cursor-default hover:shadow-[0_0_0_2px_#38bdf8] h-[50px]"
             style={{ 
               fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif',
               fontWeight: '500',
-              padding: '11.2px 22.4px',
+              padding: '0 22.4px',
               fontSize: '16px'
             }}
             initial={{ opacity: 0, y: 20 }}
