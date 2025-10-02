@@ -43,21 +43,6 @@ const ArrowIcon = () => (
 export const MoodHeroDemo = () => {
   return (
     <div className="relative min-h-screen overflow-hidden">
-       {/* 폰트 정의 */}
-       <style jsx>{`
-         @font-face {
-           font-family: 'Playfair Display Italic';
-           src: url('/fonts/PlayfairDisplay-Italic.ttf') format('truetype');
-           font-weight: 400;
-           font-style: italic;
-         }
-         @font-face {
-           font-family: 'Arial Rounded MT Regular';
-           src: url('/fonts/ArialRounded/Arial Rounded MT Regular/Arial Rounded MT Regular.ttf') format('truetype');
-           font-weight: 100;
-           font-style: normal;
-         }
-       `}</style>
       {/* 배경 이미지 - mood-1.svg */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
