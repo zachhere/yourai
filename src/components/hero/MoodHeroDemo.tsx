@@ -4,6 +4,10 @@ import { motion } from "framer-motion";
 import { CTAButtonVariant } from "../ui/cta-buttons";
 import { FlowButton } from "@/components/ui/flow-button";
 import { Button } from "@/components/ui/stateful-button";
+import DesignaliDemo from "../navbar/DesignaliDemo";
+import { RealNavbarDemo } from "../navbar/RealNavbarDemo";
+import SimpleSaaSNavbarDemo from "../navbar/SimpleSaaSNavbarDemo";
+import { PearlNavbar } from "../navbar/PearlNavbarDemo";
 
 // 일반 채팅창 컴포넌트 (작은 박스)
 const GeneralChatCursor = ({ 
@@ -234,53 +238,60 @@ const BlueCursorWithTooltip = ({
               />
             ))
           ) : navbarClicked && !ctaButtonClicked ? (
-            /* navbar 클릭 시 nav 이미지들 */
+            /* navbar 클릭 시 nav 텍스트 설명들 */
             <>
-              <motion.img
-                src="/images/nav1.png"
-                alt="Nav 1"
-                className="h-12 w-auto object-contain cursor-pointer flex-shrink-0"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1, transition: { duration: 0.3 } }}
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: "spring", stiffness: 500, damping: 30 }}
+              <div
+                className="h-12 w-24 cursor-pointer flex-shrink-0 flex items-center justify-center"
                 onMouseEnter={() => onNavItemHover(1)}
                 onMouseLeave={() => onNavItemHover(null)}
                 onClick={(e) => {
                   e.stopPropagation();
                   onNavItemClick(1);
                 }}
-              />
-              <motion.img
-                src="/images/nav2.png"
-                alt="Nav 2"
-                className="h-12 w-auto object-contain cursor-pointer flex-shrink-0"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1, transition: { duration: 0.3, delay: 0.1 } }}
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: "spring", stiffness: 500, damping: 30 }}
+              >
+                <span className="text-white text-sm font-medium" style={{ fontFamily: 'Arial Rounded MT Regular, Arial, sans-serif' }}>
+                  Glass
+                </span>
+              </div>
+              <div
+                className="h-12 w-24 cursor-pointer flex-shrink-0 flex items-center justify-center"
                 onMouseEnter={() => onNavItemHover(2)}
                 onMouseLeave={() => onNavItemHover(null)}
                 onClick={(e) => {
                   e.stopPropagation();
                   onNavItemClick(2);
                 }}
-              />
-              <motion.img
-                src="/images/nav3.png"
-                alt="Nav 3"
-                className="h-12 w-auto object-contain cursor-pointer flex-shrink-0"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1, transition: { duration: 0.3, delay: 0.2 } }}
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: "spring", stiffness: 500, damping: 30 }}
+              >
+                <span className="text-white text-sm font-medium" style={{ fontFamily: 'Arial Rounded MT Regular, Arial, sans-serif' }}>
+                  Simple
+                </span>
+              </div>
+              <div
+                className="h-12 w-24 cursor-pointer flex-shrink-0 flex items-center justify-center"
                 onMouseEnter={() => onNavItemHover(3)}
                 onMouseLeave={() => onNavItemHover(null)}
                 onClick={(e) => {
                   e.stopPropagation();
                   onNavItemClick(3);
                 }}
-              />
+              >
+                <span className="text-white text-sm font-medium" style={{ fontFamily: 'Arial Rounded MT Regular, Arial, sans-serif' }}>
+                  Clean
+                </span>
+              </div>
+              <div
+                className="h-12 w-24 cursor-pointer flex-shrink-0 flex items-center justify-center"
+                onMouseEnter={() => onNavItemHover(4)}
+                onMouseLeave={() => onNavItemHover(null)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onNavItemClick(4);
+                }}
+              >
+                <span className="text-white text-sm font-medium" style={{ fontFamily: 'Arial Rounded MT Regular, Arial, sans-serif' }}>
+                  Calm
+                </span>
+              </div>
             </>
           ) : ctaButtonClicked && !navbarClicked ? (
             /* CTA 버튼 클릭 시 - 실제 버튼 컴포넌트들 */
@@ -497,35 +508,44 @@ export const MoodHeroDemo = () => {
     }
   };
   return (
-    <>
-      {/* Custom Navbar */}
+    <div className="relative min-h-screen overflow-hidden" onClick={handleClick} style={{ cursor: isProcessing ? 'wait' : 'auto' }}>
+      {/* Custom Navbar - 히어로 위에 투명하게 오버레이 */}
       {selectedNavItem !== null ? (
-        /* 선택된 Nav 이미지 - 영구 표시 */
-        <div className="fixed top-0 left-0 right-0 z-50 w-full px-6 py-4 flex items-center justify-center">
-          <img
-            src={`/images/nav${selectedNavItem}.png`}
-            alt={`Nav ${selectedNavItem}`}
-            className="h-auto max-w-full object-contain"
-            style={{ maxHeight: '60px' }}
-          />
+        /* 선택된 Nav 컴포넌트 - 영구 표시 */
+        <div className="absolute top-0 left-0 right-0 z-50 w-full">
+          {selectedNavItem === 1 ? (
+            <DesignaliDemo isVisible={true} />
+          ) : selectedNavItem === 2 ? (
+            <RealNavbarDemo isVisible={true} />
+          ) : selectedNavItem === 3 ? (
+            <SimpleSaaSNavbarDemo isVisible={true} />
+          ) : selectedNavItem === 4 ? (
+            <PearlNavbar />
+          ) : null}
         </div>
       ) : navbarClicked && !ctaButtonClicked && hoveredNavItem !== null ? (
-        /* Nav 이미지 미리보기 - navbar 전체 대체 */
-        <div className="fixed top-0 left-0 right-0 z-50 w-full px-6 py-4 flex items-center justify-center">
-          <motion.img
-            src={`/images/nav${hoveredNavItem}.png`}
-            alt={`Nav ${hoveredNavItem} Preview`}
-            className="h-auto max-w-full object-contain"
-            style={{ maxHeight: '60px' }}
+        /* Nav 컴포넌트 미리보기 - navbar 전체 대체 */
+        <div className="absolute top-0 left-0 right-0 z-50 w-full">
+          <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
-          />
+          >
+            {hoveredNavItem === 1 ? (
+              <DesignaliDemo isVisible={true} />
+            ) : hoveredNavItem === 2 ? (
+              <RealNavbarDemo isVisible={true} />
+            ) : hoveredNavItem === 3 ? (
+              <SimpleSaaSNavbarDemo isVisible={true} />
+            ) : hoveredNavItem === 4 ? (
+              <PearlNavbar />
+            ) : null}
+          </motion.div>
         </div>
       ) : (
         /* 기본 Navbar */
         <nav 
-          className="fixed top-0 left-0 right-0 z-50 w-full px-6 py-4 border-2 border-transparent hover:border-sky-400 transition-all cursor-pointer"
+          className="absolute top-0 left-0 right-0 z-50 w-full px-6 py-4 border-2 border-transparent hover:border-sky-400 transition-all cursor-pointer"
           onClick={(e) => {
             e.stopPropagation();
             setNavbarClicked(true);
@@ -552,7 +572,7 @@ export const MoodHeroDemo = () => {
             {/* Left side - Logo and text */}
             <div className="flex items-center space-x-3">
               {/* YourAI Logo */}
-              <div className="w-8 h-8 flex items-center justify-center">
+              <div className="w-8 h-8 flex items-center justify-center mb-1">
                 <svg
                   width="24"
                   height="24"
@@ -561,24 +581,14 @@ export const MoodHeroDemo = () => {
                   xmlns="http://www.w3.org/2000/svg"
                   className="text-white"
                 >
-                  <path
-                    d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z"
-                    fill="currentColor"
-                  />
-                  <circle
-                    cx="12"
-                    cy="12"
-                    r="3"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    fill="none"
-                  />
-                  <path
-                    d="M12 1V3M12 21V23M4.22 4.22L5.64 5.64M18.36 18.36L19.78 19.78M1 12H3M21 12H23M4.22 19.78L5.64 18.36M18.36 5.64L19.78 4.22"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                  />
+                  <g clipPath="url(#clip0_209_2)">
+                    <path d="M18.1992 12.5742V21H15.0234V12.5508C15.0234 11.3555 14.7695 10.5156 14.2617 10.0312C13.7539 9.53906 12.8711 9.29297 11.6133 9.29297H5.67188V6.45703H11.8125C13.3516 6.45703 14.5859 6.66406 15.5156 7.07812C16.4531 7.49219 17.1328 8.14844 17.5547 9.04688C17.9844 9.9375 18.1992 11.1133 18.1992 12.5742ZM9.07031 12.1641V21H5.90625V12.1641H9.07031Z" fill="currentColor"/>
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_209_2">
+                      <rect width="24" height="24" fill="white"/>
+                    </clipPath>
+                  </defs>
                 </svg>
               </div>
               <span 
@@ -650,8 +660,6 @@ export const MoodHeroDemo = () => {
           </div>
         </nav>
       )}
-
-    <div className="relative min-h-screen overflow-hidden" onClick={handleClick} style={{ cursor: isProcessing ? 'wait' : 'auto' }}>
        {/* 폰트 정의 */}
        <style jsx>{`
          @font-face {
@@ -957,6 +965,5 @@ export const MoodHeroDemo = () => {
         />
       )}
     </div>
-    </>
   );
 };
