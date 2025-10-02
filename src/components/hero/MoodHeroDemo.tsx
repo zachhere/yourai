@@ -496,7 +496,7 @@ export const MoodHeroDemo = () => {
   };
 
   const handleMessageSubmit = (message: string) => {
-    if (message.toLowerCase() === 'make it moov') {
+    if (message.toLowerCase() === 'make it move') {
       setIsProcessing(true);
       setClickedCursor(null); // 파란 커서 제거
       setShowBox(false);

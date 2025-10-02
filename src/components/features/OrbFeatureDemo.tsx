@@ -145,22 +145,18 @@ const OrbFeatureDemo = () => {
       return;
     }
     
-    // 커서가 없으면 생성
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    
+    // 커서가 없으면 생성 - 클릭한 정확한 위치에 커서 생성
     const newCursor = {
       id: Date.now(),
-      x,
-      y
+      x: e.clientX,
+      y: e.clientY
     };
     
     setClickedCursor(newCursor);
   };
 
   const handleMessageSubmit = (message: string) => {
-    if (message.toLowerCase() === 'make it moov') {
+    if (message.toLowerCase() === 'make it move') {
       setIsProcessing(true);
       setClickedCursor(null);
       setTimeout(() => {
@@ -241,20 +237,6 @@ const OrbFeatureDemo = () => {
               style={{
                 width: '312px',
                 height: '196px'
-              }}
-              onClick={(e) => {
-                e.stopPropagation();
-                const rect = e.currentTarget.getBoundingClientRect();
-                const parentRect = document.querySelector('#features')?.getBoundingClientRect();
-                
-                if (parentRect) {
-                  const newCursor = {
-                    id: Date.now(),
-                    x: rect.right - parentRect.left - 18,
-                    y: rect.bottom - parentRect.top - 19.5
-                  };
-                  setClickedCursor(newCursor);
-                }
               }}
             >
               <img 
@@ -389,20 +371,6 @@ const OrbFeatureDemo = () => {
                 width: '312px',
                 height: '196px'
               }}
-              onClick={(e) => {
-                e.stopPropagation();
-                const rect = e.currentTarget.getBoundingClientRect();
-                const parentRect = document.querySelector('#features')?.getBoundingClientRect();
-                
-                if (parentRect) {
-                  const newCursor = {
-                    id: Date.now(),
-                    x: rect.right - parentRect.left - 4,
-                    y: rect.bottom - parentRect.top - 280
-                  };
-                  setClickedCursor(newCursor);
-                }
-              }}
             >
               <img 
                 src={imageChanged ? "/images/support.png" : "/images/ai-powered-support.jpg"} 
@@ -458,8 +426,8 @@ const OrbFeatureDemo = () => {
           className="fixed pointer-events-none"
           style={{
             zIndex: 999999,
-            left: clickedCursor.x - 16,
-            top: clickedCursor.y + 270,
+            left: clickedCursor.x - 18,
+            top: clickedCursor.y - 19.5,
           }}
           initial={{ scale: 0, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
